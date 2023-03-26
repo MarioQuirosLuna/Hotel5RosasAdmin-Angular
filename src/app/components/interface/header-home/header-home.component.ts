@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class HeaderHomeComponent {
   hotelName = 'Hotel 5 Rosas';
 
-
+  username = 'Admin'
 }

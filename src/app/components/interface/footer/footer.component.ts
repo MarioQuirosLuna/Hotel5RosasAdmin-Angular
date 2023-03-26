@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  hotelName = 'Hotel 5 Rosas';
+
 }
