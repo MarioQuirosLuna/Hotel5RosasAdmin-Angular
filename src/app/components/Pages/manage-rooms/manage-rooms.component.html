@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="header"><app-header-home></app-header-home></div>
+
+  <div class="lateral-menu"><app-lateral-menu></app-lateral-menu></div>
+
+  <div class="information">
+    <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
+      <h2>Administrar Habitaciones</h2>
+
+      <div *ngFor="let room of rooms;">
+        <h3 class="h2">{{room.name}}<a routerLink="" style="padding-left: 20px;">cambiar descripción</a></h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Número de Habitación</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let room of room.habitaciones;">
+              <td>{{room.number}}</td>
+              <td *ngIf="!room.state"><input type="checkbox" checked></td>
+              <td *ngIf="room.state"><input type="checkbox"></td>Activa?
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <br>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
+
+  <div class="footer"><app-footer></app-footer></div>
+
+</div>

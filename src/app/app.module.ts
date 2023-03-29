@@ -16,6 +16,8 @@ import { ModifyPagesComponent } from './components/Pages/modify-pages/modify-pag
 import { HeaderHomeComponent } from './components/interface/header-home/header-home.component';
 import { ReservationsListComponent } from './components/Pages/reservations-list/reservations-list.component';
 import { AreaPublicityComponent } from './components/interface/area-publicity/area-publicity.component';
+import { ManageRoomsComponent } from './components/Pages/manage-rooms/manage-rooms.component';
+import { TodayHotelComponent } from './components/Pages/today-hotel/today-hotel.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { AreaPublicityComponent } from './components/interface/area-publicity/ar
     ModifyPagesComponent,
     HeaderHomeComponent,
     ReservationsListComponent,
-    AreaPublicityComponent
+    AreaPublicityComponent,
+    ManageRoomsComponent,
+    TodayHotelComponent
   ],
   imports: [
     BrowserModule,
