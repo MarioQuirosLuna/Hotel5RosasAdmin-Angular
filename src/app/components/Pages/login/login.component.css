@@ -31,7 +31,8 @@
 
 .information {
   /*background-color : cyan;*/
-
+  padding-top: 188px;
+  padding-bottom: 330px;
   grid-column-start: 2;
   grid-column-end: 2;
 
