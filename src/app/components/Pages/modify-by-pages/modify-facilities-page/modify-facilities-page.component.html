@@ -20,7 +20,7 @@
               <div class="card-body">
                 <h3 class="card-title fw-bold">{{facility.nombre}}</h3>
                 <p class="card-text" style="text-align: justify;">{{facility.descripcion}}</p>
-                <a class="card-link" (click)="editFacility()">Editar</a>
+                <a class="card-link" (click)="editFacility(facility.pK_Facilidad)">Editar</a>
                 <a class="card-link" (click)="deleteFacility()">Eliminar</a>
               </div>
             </div>

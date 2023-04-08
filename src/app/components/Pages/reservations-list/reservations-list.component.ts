@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reservations-list',
   templateUrl: './reservations-list.component.html',
-  styleUrls: ['./reservations-list.component.css']
+  styleUrls: ['./reservations-list.component.css'],
 })
-export class ReservationsListComponent {
+export class ReservationsListComponent  implements OnInit{
   reservations = [
     {
       key: 'facility1',
@@ -18,7 +19,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -31,7 +32,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -44,7 +45,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -57,7 +58,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -70,7 +71,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -83,7 +84,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -96,7 +97,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -109,7 +110,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -122,7 +123,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -135,7 +136,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -148,7 +149,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -161,7 +162,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -174,7 +175,7 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
     {
       key: 'facility1',
@@ -187,7 +188,14 @@ export class ReservationsListComponent {
       transaction: '123123123',
       dateStart: 'dd/mm//yyyy',
       dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
+      type: 'Standar',
     },
   ];
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+
+
+  }
 }
