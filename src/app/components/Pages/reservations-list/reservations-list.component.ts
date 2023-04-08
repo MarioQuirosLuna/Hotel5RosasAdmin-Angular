@@ -6,7 +6,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './reservations-list.component.html',
   styleUrls: ['./reservations-list.component.css'],
 })
-export class ReservationsListComponent  implements OnInit{
+export class ReservationsListComponent implements OnInit {
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+  }
+
   reservations = [
     {
       key: 'facility1',
@@ -191,11 +196,4 @@ export class ReservationsListComponent  implements OnInit{
       type: 'Standar',
     },
   ];
-
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit() {
-
-
-  }
 }

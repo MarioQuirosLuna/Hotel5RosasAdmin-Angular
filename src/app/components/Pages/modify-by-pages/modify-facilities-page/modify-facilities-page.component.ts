@@ -25,17 +25,16 @@ export class ModifyFacilitiesPageComponent {
   }
 
   editFacility(idFacility: number) {
-    const data = {
-      userId: 123,
-      userName: 'John Doe'
+    const navigationExtras = {
+      queryParams: { idFacility: idFacility },
     };
-    const navigationExtras: NavigationExtras = {
-      state: {
-        data: data
-      }
-    };
-
-    this.route.navigate(['/reservations-list'], navigationExtras);
+    this.route.navigate(['/reservations-list'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.route.url.split('?')[0]
+      );
+    });
     //alert('editar')
   }
 }
