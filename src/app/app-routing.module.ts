@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'modify-home', component: ModifyHomePageComponent },
   { path: 'modify-ubication', component: ModifyUbicationPageComponent },
 
-  //{ path: '**', redirectTo: "login" },
+  { path: '**', redirectTo: "login" },
 ];
 
 @NgModule({
