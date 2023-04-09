@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { ReservationServiceService } from '../../services/reservation-service/reservation-service.service';
 @Component({
   selector: 'app-reservations-list',
   templateUrl: './reservations-list.component.html',
@@ -10,7 +10,13 @@ export class ReservationsListComponent implements OnInit {
 
   username: String = "";
 
-  constructor(private route: ActivatedRoute) {}
+  reservations_list: any = []
+
+  constructor(private route: ActivatedRoute, private service: ReservationServiceService) {
+    this.service.getReservations().subscribe((reservations_list) => {
+      console.log(reservations_list);
+    });
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
