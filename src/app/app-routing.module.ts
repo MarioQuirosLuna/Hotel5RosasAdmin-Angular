@@ -15,6 +15,7 @@ import { ModifyAboutUsPageComponent } from './components/Pages/modify-by-pages/m
 import { ModifyFacilitiesPageComponent } from './components/Pages/modify-by-pages/modify-facilities-page/modify-facilities-page.component';
 import { ModifyHomePageComponent } from './components/Pages/modify-by-pages/modify-home-page/modify-home-page.component';
 import { ModifyUbicationPageComponent } from './components/Pages/modify-by-pages/modify-ubication-page/modify-ubication-page.component';
+import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-rooms.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'modify-facilities', component: ModifyFacilitiesPageComponent },
   { path: 'modify-home', component: ModifyHomePageComponent },
   { path: 'modify-ubication', component: ModifyUbicationPageComponent },
+  { path: 'consult-rooms', component: ConsultRoomsComponent },
 
   { path: '**', redirectTo: "login" },
 ];

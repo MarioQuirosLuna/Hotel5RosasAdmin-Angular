@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FacilitiesServiceService } from 'src/app/components/services/facilities-service/facilities-service.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modify-facilities-page',
@@ -10,13 +10,20 @@ import { Router, NavigationExtras } from '@angular/router';
 export class ModifyFacilitiesPageComponent {
   facilities: any = [];
 
+  username: String = '';
+
+
   constructor(
     private service: FacilitiesServiceService,
-    private route: Router
+    private route: Router,
+    private router: ActivatedRoute
   ) {
     this.service.getHotelFacilities().subscribe((facilities) => {
       this.facilities = facilities;
       console.log(this.facilities);
+    });
+    this.router.queryParams.subscribe((params) => {
+      this.username = params['username'];
     });
   }
 
@@ -28,6 +35,7 @@ export class ModifyFacilitiesPageComponent {
     const navigationExtras = {
       queryParams: { idFacility: idFacility },
     };
+    /*
     this.route.navigate(['/reservations-list'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
@@ -35,6 +43,6 @@ export class ModifyFacilitiesPageComponent {
         this.route.url.split('?')[0]
       );
     });
-    //alert('editar')
+    //alert('editar')*/
   }
 }

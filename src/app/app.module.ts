@@ -26,6 +26,7 @@ import { ModifyFacilitiesPageComponent } from './components/Pages/modify-by-page
 import { ModifyUbicationPageComponent } from './components/Pages/modify-by-pages/modify-ubication-page/modify-ubication-page.component';
 import { ModifyRoomComponent } from './components/Pages/modify-room/modify-room.component';
 import { ModifyFacilityPageComponent } from './components/Pages/modify-by-pages/modify-facility-page/modify-facility-page.component';
+import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-rooms.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ModifyFacilityPageComponent } from './components/Pages/modify-by-pages/
     ModifyFacilitiesPageComponent,
     ModifyUbicationPageComponent,
     ModifyRoomComponent,
-    ModifyFacilityPageComponent
+    ModifyFacilityPageComponent,
+    ConsultRoomsComponent
   ],
   imports: [
     BrowserModule,

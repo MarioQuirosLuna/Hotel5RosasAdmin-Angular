@@ -1,193 +1,71 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-modify-pages',
   templateUrl: './modify-pages.component.html',
   styleUrls: ['./modify-pages.component.css']
 })
 export class ModifyPagesComponent {
-  reservations = [
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-    {
-      key: 'facility1',
-      date: 'dd/mm//yyyy',
-      id_reserva: 'WE12345',
-      firstName: 'Juan',
-      lastName: 'Perez Oso',
-      email: 'jperez@gmail.com',
-      tarjeta: '***************2222',
-      transaction: '123123123',
-      dateStart: 'dd/mm//yyyy',
-      dateEnd: 'dd/mm//yyyy',
-      type: 'Standar'
-    },
-  ];
+  username: String = "";
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.username = params['username'];
+    });
+  }
+
+  routerHome(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/modify-home'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerAboutUs(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/modify-about-us'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerFacility(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/modify-facilities'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerUbication(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/modify-ubication'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-today-hotel',
@@ -6,6 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./today-hotel.component.css']
 })
 export class TodayHotelComponent {
+
+  username: String = "";
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.username = params['username'];
+    });
+  }
 
   myDate = new Date();
 

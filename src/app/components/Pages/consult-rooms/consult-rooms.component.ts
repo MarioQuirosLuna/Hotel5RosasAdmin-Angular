@@ -1,21 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FacilitiesServiceService } from '../../services/facilities-service/facilities-service.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
-  selector: 'app-reservations-list',
-  templateUrl: './reservations-list.component.html',
-  styleUrls: ['./reservations-list.component.css'],
+  selector: 'app-consult-rooms',
+  templateUrl: './consult-rooms.component.html',
+  styleUrls: ['./consult-rooms.component.css']
 })
-export class ReservationsListComponent implements OnInit {
+export class ConsultRoomsComponent {
+  tablaVisible = false;
+  resultText = ''
+  roomTypes: any = [];
 
   username: String = "";
 
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit() {
+  constructor(private service: FacilitiesServiceService, private router: Router, private route: ActivatedRoute) {
+    this.service.getRoomsType().subscribe(roomTypes =>{
+      this.roomTypes = roomTypes;
+    });
     this.route.queryParams.subscribe(params => {
       this.username = params['username'];
     });
+  }
+
+  showTable() {
+    this.tablaVisible = true;
+    this.resultText = ' - Resultado'
+  }
+
+  cleanDisplay() {
+    this.tablaVisible = false;
+    this.resultText = ''
   }
 
   reservations = [
@@ -201,5 +219,136 @@ export class ReservationsListComponent implements OnInit {
       dateEnd: 'dd/mm//yyyy',
       type: 'Standar',
     },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
+    {
+      key: 'facility1',
+      date: 'dd/mm//yyyy',
+      id_reserva: 'WE12345',
+      firstName: 'Juan',
+      lastName: 'Perez Oso',
+      email: 'jperez@gmail.com',
+      tarjeta: '***************2222',
+      transaction: '123123123',
+      dateStart: 'dd/mm//yyyy',
+      dateEnd: 'dd/mm//yyyy',
+      type: 'Standar',
+    },
   ];
+
 }

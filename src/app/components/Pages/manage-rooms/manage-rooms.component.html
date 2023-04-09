@@ -1,12 +1,12 @@
 <div class="container">
 
-  <div class="header"><app-header-home></app-header-home></div>
+  <div class="header"><app-header-home [username]="username"></app-header-home></div>
 
-  <div class="lateral-menu"><app-lateral-menu></app-lateral-menu></div>
+  <div class="lateral-menu"><app-lateral-menu [username]="username"></app-lateral-menu></div>
 
   <div class="information">
     <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
-      <h2>Administrar Habitaciones</h2>
+      <h1>Administrar Habitaciones <a routerLink="" style="padding-left: 20px;">Crear Habitación</a></h1>
 
       <div *ngFor="let room of rooms;">
         <h3 class="h2">{{room.name}}<a routerLink="" style="padding-left: 20px;">cambiar descripción</a></h3>

@@ -1,50 +1,50 @@
 <div class="container">
-    <div class="header"><app-header-home></app-header-home></div>
-    <div class="lateral-menu"><app-lateral-menu></app-lateral-menu></div>
-    <div class="information">
-        <h2>Modificar Páginas</h2>
-        <div class="overflow-auto" style="max-width: 1000px; max-height: 750px;">
-            <h3>{{objectPage.title}}</h3>
-            <form>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-                    style="resize: none; text-align: justify;">{{objectPage.information}}</textarea>
-                <br>
-                <div class="information d-flex">
-                    <div class="d-flex container">
-                        <div>
-                            <p>Click a la imagen para eliminarla</p>
-                            <div class="overflow-auto row" style="max-width: 500px; max-height: 300px;">
-                                <div class="col-md-4 mt-2 col-lg-3" *ngFor="let img of gallery;">
-                                    <img [attr.data-id]="img.pK_Imagen" src={{img.imagen}}
-                                        class="img-fluid rounded border border-dark" alt="image"
-                                        (click)="onImageClick(img.pK_Imagen)">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="information d-flex">
-                        <form class="form-example" enctype="multipart/form-data">
-                            <div class="form-example" style="padding-left: 10px; width: 490px; margin-top: 70px;">
-                                <label for="email" class="col-form-label">Subir nueva imagen: </label>
-                                <br>
-                                <input type="file" style="width: 60%; border-radius: 0.25rem; border: 1px solid #ced4da"
-                                    multiple>
-                                <button class="btn btn-outline-primary" style="margin-left: 10px;">Agregar</button>
-                            </div>
-                        </form>
-                    </div>
+  <div class="header"><app-header-home [username]="username"></app-header-home></div>
+
+  <div class="lateral-menu"><app-lateral-menu [username]="username"></app-lateral-menu></div>
+
+  <div class="information">
+    <h2>Modificar Páginas</h2>
+    <div class="overflow-auto" style="max-width: 1000px; max-height: 750px;">
+      <h3>{{objectPage.title}}</h3>
+      <form>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
+          style="resize: none; text-align: justify;">{{objectPage.information}}</textarea>
+        <br>
+        <div class="information d-flex">
+          <div class="d-flex container">
+            <div>
+              <p>Click a la imagen para eliminarla</p>
+              <div class="overflow-auto row" style="max-width: 500px; max-height: 300px;">
+                <div class="col-md-4 mt-2 col-lg-3" *ngFor="let img of gallery;">
+                  <img [attr.data-id]="img.pK_Imagen" src={{img.imagen}} class="img-fluid rounded border border-dark"
+                    alt="image" (click)="onImageClick(img.pK_Imagen)">
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="information d-flex">
+            <form class="form-example" enctype="multipart/form-data">
+              <div class="form-example" style="padding-left: 10px; width: 490px; margin-top: 70px;">
+                <label for="email" class="col-form-label">Subir nueva imagen: </label>
                 <br>
-                <button class="btn btn-outline-primary" style="margin-left: 10px;" (click)="restartImages($event)">
-                    Reestablecer Imagenes
-                </button>
-                <div style="margin-left: 800px;">
-                    <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;">Aceptar</button>
-                    <button type="reset" class="btn btn-outline-primary">Cancelar</button>
-                </div>
+                <input type="file" style="width: 60%; border-radius: 0.25rem; border: 1px solid #ced4da" multiple>
+                <button class="btn btn-outline-primary" style="margin-left: 10px;">Agregar</button>
+              </div>
             </form>
+          </div>
         </div>
+        <br>
+        <button class="btn btn-outline-primary" style="margin-left: 10px;" (click)="restartImages($event)">
+          Reestablecer Imagenes
+        </button>
+        <div style="margin-left: 800px;">
+          <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;">Aceptar</button>
+          <button type="reset" class="btn btn-outline-primary">Cancelar</button>
+        </div>
+      </form>
     </div>
-    <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
-    <div class="footer"><app-footer></app-footer></div>
+  </div>
+  <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
+  <div class="footer"><app-footer></app-footer></div>
 </div>

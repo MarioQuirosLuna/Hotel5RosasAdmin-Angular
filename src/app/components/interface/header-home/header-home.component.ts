@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header-home',
@@ -6,7 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./header-home.component.css']
 })
 export class HeaderHomeComponent {
+
+  @Input() username: String = "";
+
   hotelName = 'Hotel 5 Rosas';
 
-  username = 'Admin'
+  constructor(){
+
+  }
+
+  OnInit(){
+
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
@@ -8,8 +8,105 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class LateralMenuComponent {
 
-  constructor(){
+  @Input() username: String = "";
 
+
+  constructor(private router: Router){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
   }
+
+  routerHome(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/home-page'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerModifyPages(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/modify-page'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerReservationList(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/reservations-list'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerManageRooms(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/manage-rooms'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerTodayHotel(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/hotel-today'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerConsultRooms(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/consult-rooms'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerPublicity(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/contact-us'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
 
 }
