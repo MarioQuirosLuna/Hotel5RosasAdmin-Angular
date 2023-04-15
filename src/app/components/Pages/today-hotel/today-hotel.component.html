@@ -21,11 +21,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let room of rooms;">
-              <td>{{room.number}}</td>
-              <td>{{room.name}}</td>
-              <td *ngIf="room.state=='D'">DISPONIBLE</td>
-              <td *ngIf="room.state=='O'">OCUPADA</td>
-              <td *ngIf="room.state=='R'">RESERVADA</td>
+              <td>{{room.numero_Habitacion}}</td>
+              <td>{{room.nombre}}</td>
+              <td>{{room.estado_Del_Dia}}</td>
             </tr>
           </tbody>
         </table>

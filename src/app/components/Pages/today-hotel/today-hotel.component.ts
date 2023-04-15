@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HomeServiceService } from '../../services/home-service/home-service.service';
 
 @Component({
   selector: 'app-today-hotel',
@@ -8,9 +9,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TodayHotelComponent {
 
+  rooms: any = []
+
   username: String = "";
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,private service: HomeServiceService) {
+    this.service.getHotelToday().subscribe(rooms =>{
+      this.rooms = rooms;
+      console.log(rooms);
+    });
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -20,43 +28,6 @@ export class TodayHotelComponent {
 
   myDate = new Date();
 
-  rooms = [
-    {
-      key: 'facility1',
-      number: 1,
-      name: 'Standard',
-      state : 'D'
-    },
-    {
-      key: 'facility1',
-      number: 2,
-      name: 'Standard',
-      state : 'D'
-    },
-    {
-      key: 'facility1',
-      number: 3,
-      name: 'Standard',
-      state : 'D'
-    },
-    {
-      key: 'facility1',
-      number: 4,
-      name: 'Junior',
-      state : 'D'
-    },
-    {
-      key: 'facility1',
-      number: 5,
-      name: 'Junior',
-      state : 'O'
-    },
-    {
-      key: 'facility1',
-      number: 6,
-      name: 'Junior',
-      state : 'R'
-    }
-  ];
+
 
 }
