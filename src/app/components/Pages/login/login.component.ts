@@ -20,8 +20,8 @@ export class LoginComponent {
   }
 
   loginForm = new FormGroup({
-    username: new FormControl('juanpa'),
-    password: new FormControl('admin'),
+    username: new FormControl(''),
+    password: new FormControl(''),
   });
 
   login() {
