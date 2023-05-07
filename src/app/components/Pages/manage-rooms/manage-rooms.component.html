@@ -8,25 +8,44 @@
     <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
       <h1>Administrar Habitaciones <a routerLink="" style="padding-left: 20px;">Crear Habitación</a></h1>
 
-      <div *ngFor="let room of rooms;">
-        <h3 class="h2">{{room.name}}<a routerLink="" style="padding-left: 20px;">cambiar descripción</a></h3>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Número de Habitación</th>
-              <th scope="col">Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let room of room.habitaciones;">
-              <td>{{room.number}}</td>
-              <td *ngIf="!room.state"><input type="checkbox" checked></td>
-              <td *ngIf="room.state"><input type="checkbox"></td>Activa?
-            </tr>
-          </tbody>
-        </table>
-        <br>
-        <br>
+      <div *ngFor="let roomType of roomsTypes;">
+        <div class="border border-1 p-3 m-3 rounded-3 border-dark">
+          <div class="d-flex justify-content-between pb-2 border-bottom border-2">
+            <div class="d-flex">
+              <img class="img-fluid rounded-3" src="{{imagen}}" alt="Image Room" width="150" height="150">
+              <span class="ps-3">
+                <h3 class="fw-bold">{{roomType.nombre}}</h3>
+                <h4>Tarifa:
+                  <span class="text-primary">₡{{roomType.tarifa}}</span>
+                </h4>
+              </span>
+            </div>
+            <span>
+              <button type="button" class="btn btn-primary" routerLink="">Editar</button>
+            </span>
+          </div>
+          <p class="pt-2">{{roomType.descripcion}}</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Número de Habitación</th>
+                <th scope="col">Estado Hoy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let room of rooms;">
+                <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                  {{room.numero_Habitacion}}
+                </td>
+                <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion"
+                  [ngClass]="{'bg-success': room.estado_Del_Dia == 'Disponible', 'bg-danger': room.estado_Del_Dia != 'Disponible'}"
+                  class="text-center fw-bold text-white">
+                  {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>

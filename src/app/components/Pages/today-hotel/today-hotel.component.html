@@ -23,7 +23,9 @@
             <tr *ngFor="let room of rooms;">
               <td>{{room.numero_Habitacion}}</td>
               <td>{{room.nombre}}</td>
-              <td>{{room.estado_Del_Dia}}</td>
+              <td [ngClass]="{'bg-success': room.estado_Del_Dia == 'Disponible', 'bg-danger': room.estado_Del_Dia != 'Disponible'}" class="text-center fw-bold text-white">
+                {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
+              </td>
             </tr>
           </tbody>
         </table>

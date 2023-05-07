@@ -16,7 +16,6 @@ export class TodayHotelComponent {
   constructor(private route: ActivatedRoute,private service: HomeServiceService) {
     this.service.getHotelToday().subscribe(rooms =>{
       this.rooms = rooms;
-      console.log(rooms);
     });
   }
 
