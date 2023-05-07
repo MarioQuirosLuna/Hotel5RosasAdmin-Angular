@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'manage-rooms', component: ManageRoomsComponent },
   { path: 'hotel-today', component: TodayHotelComponent },
   { path: 'home-page', component: HomePageComponent },
+  { path: 'modify-room', component: ModifyRoomComponent },
 
   { path: 'modify-about-us', component: ModifyAboutUsPageComponent },
   { path: 'modify-facilities', component: ModifyFacilitiesPageComponent },

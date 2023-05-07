@@ -1,1 +1,68 @@
-<p>modify-room works!</p>
+<div class="container">
+
+    <div class="header"><app-header-home [username]="username"></app-header-home></div>
+
+    <div class="lateral-menu"><app-lateral-menu [username]="username"></app-lateral-menu></div>
+
+    <div class="information">
+        <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
+            <h1>Modificar Tipo Habitación</h1>
+            <div class="border border-1 p-3 m-3 rounded-3 border-dark">
+                <div class="d-flex justify-content-between pb-2 border-bottom border-2">
+                    <div class="d-flex">
+                        <img class="img-fluid rounded-3" src="{{imagen}}" alt="Image Room" width="150" height="150">
+                        <span class="ps-3">
+                            <h3 class="fw-bold">{{nombre}}</h3>
+                            <div class="form-group">
+                                <label for="nombre">Tarifa:</label>
+                                <input type="text" class="form-control" id="nombre" value="{{tarifa}}"
+                                    placeholder="Ingresa la tarifa">
+                            </div>
+                            <div class="form-group pt-3">
+                                <label for="archivo">Cambiar Imagen:</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="archivo"
+                                        (change)="onFileSelected($event)">
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group pt-2">
+                    <label for="comentario">Descripción:</label>
+                    <textarea class="form-control" id="comentario" rows="3" value="{{descripcion}}"
+                        placeholder="Escribe aquí la descripción del tipo de habitación"></textarea>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Número de Habitación</th>
+                            <th scope="col">Estado Hoy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let room of rooms;">
+                            <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                                {{room.numero_Habitacion}}
+                            </td>
+                            <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion"
+                                [ngClass]="{'bg-success': room.estado_Del_Dia == 'Disponible', 'bg-danger': room.estado_Del_Dia != 'Disponible'}"
+                                class="text-center fw-bold text-white">
+                                {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger me-3" routerLink="/manage-rooms">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="saveRoom()">Guardar</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
+
+    <div class="footer"><app-footer></app-footer></div>
+
+</div>
