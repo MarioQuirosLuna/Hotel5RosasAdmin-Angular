@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-modify-room',
@@ -7,46 +9,99 @@ import { Component } from '@angular/core';
 })
 export class ModifyRoomComponent {
 
-  username: string = "";
+  @Input() username: String = "";
+  @Input() _id: Number = 0;
+
   rooms: any = [];
 
   roomType: any = {};
 
   pk_tipo_habitacion: number = 0;
-  imagen: string = "https://via.placeholder.com/300x300?background=gray";
+  imagen: string = "";
   tarifa: number = 0;
   descripcion: string = "";
   nombre: string = "";
 
-  constructor() { }
-  ngOnInit() {
-    //Esto hay que obtenerlo de base de datos con el id del tipo de habitacion
-    this.roomType = {
-      "pK_Tipo_Habitacion": 1,
-      "nombre": "Suit Presidencial",
-      "descripcion": "Suit con la última tendencia en accesorios de lujo, con acabados impecables que le brindarán una experiencia innolvidable y reconfortante en su estancia en el hotel.",
-      "tarifa": 400000
+  constructor(private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService) {
+    const navigationExtras = {
+      queryParams: { username: this.username, id: this._id },
     };
-
-    this.pk_tipo_habitacion = this.roomType.pK_Tipo_Habitacion;
-    this.nombre = this.roomType.nombre;
-    this.descripcion = this.roomType.descripcion;
-    this.tarifa = this.roomType.tarifa;
-    //this.imagen = this.roomType.imagen;
+  }
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.username = params['username'];
+      this._id = params['id'];
+    });
+    //Esto hay que obtenerlo de base de datos con el id del tipo de habitacion
+    this.serviceRoom.getRoomTypeById(this._id).subscribe(roomType => {
+      this.roomType = roomType;
+      this.pk_tipo_habitacion = roomType.pK_Tipo_Habitacion;
+      this.nombre = roomType.nombre;
+      this.descripcion = roomType.descripcion;
+      this.tarifa = roomType.tarifa;
+      this.imagen = roomType.imagen;
+    })
+    this.serviceRoom.getRooms().subscribe(rooms => {
+      this.rooms = rooms;
+    })
   }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files ? input.files[0] : null;
-
+  
     if (file) {
-      const objectUrl = URL.createObjectURL(file);
-      this.imagen = objectUrl;
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        this.imagen = base64String;
+        // Aquí puedes guardar 'base64String' en tu base de datos o realizar cualquier otra operación necesaria
+      };
+  
+      reader.readAsDataURL(file);
+      // Inicia la lectura del archivo y activa la función 'onloadend' cuando la lectura se complete
+    }
+  }
+  
+
+  actualizarNombre(nuevoValor: Event) {
+    if(nuevoValor.target){
+      this.nombre = String((nuevoValor.target as HTMLInputElement).value);
+    }
+  }
+  actualizarDescripcion(nuevoValor: Event) {
+    if(nuevoValor.target){
+      this.descripcion = String((nuevoValor.target as HTMLInputElement).value);
+    }
+  }
+
+  actualizarTarifa(nuevoValor: Event) {
+    if(nuevoValor.target){
+      this.tarifa = Number((nuevoValor.target as HTMLInputElement).value);
     }
   }
 
   saveRoom(): void {
-    // Aqui se llamaria un nuevo procedimiento para guardar los cambios en la base de datos
+    this.serviceRoom.apiRoomTypeUpdate({
+      pK_Tipo_Habitacion: this.pk_tipo_habitacion,
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+      tarifa: this.tarifa,
+      imagen: this.imagen
+    }).subscribe(() => {
+      const navigationExtras = {
+        queryParams: { username: this.username },
+      };
+      this.router.navigate(['/manage-rooms'], navigationExtras).then(() => {
+        window.history.replaceState(
+          {},
+          document.title,
+          this.router.url.split('?')[0]
+        );
+      });
+    })
+
     console.log(this.pk_tipo_habitacion);
     console.log(this.nombre);
     console.log(this.descripcion);

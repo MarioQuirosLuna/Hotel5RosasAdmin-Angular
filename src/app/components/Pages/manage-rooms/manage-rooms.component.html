@@ -12,7 +12,7 @@
         <div class="border border-1 p-3 m-3 rounded-3 border-dark">
           <div class="d-flex justify-content-between pb-2 border-bottom border-2">
             <div class="d-flex">
-              <img class="img-fluid rounded-3" src="{{imagen}}" alt="Image Room" width="150" height="150">
+              <img class="img-fluid rounded-3" src="{{roomType.imagen}}" alt="Image Room" width="150" height="150">
               <span class="ps-3">
                 <h3 class="fw-bold">{{roomType.nombre}}</h3>
                 <h4>Tarifa:
@@ -21,7 +21,8 @@
               </span>
             </div>
             <span>
-              <button type="button" class="btn btn-primary" routerLink="/modify-room">Editar</button>
+              <button type="button" class="btn btn-primary"
+                (click)="goEdit(roomType.pK_Tipo_Habitacion)">Editar</button>
             </span>
           </div>
           <p class="pt-2">{{roomType.descripcion}}</p>

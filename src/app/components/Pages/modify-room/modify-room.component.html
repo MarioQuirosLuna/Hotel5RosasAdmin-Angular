@@ -17,12 +17,13 @@
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
                                 <input type="text" class="form-control" id="nombre" value="{{nombre}}"
-                                    placeholder="Ingresa el nombre de tipo habitación">
+                                    placeholder="Ingresa el nombre de tipo habitación"
+                                    (change)="actualizarNombre($event)">
                             </div>
                             <div class="form-group pt-2">
                                 <label for="tarifa">Tarifa:</label>
                                 <input type="text" class="form-control" id="tarifa" value="{{tarifa}}"
-                                    placeholder="Ingresa la tarifa">
+                                    placeholder="Ingresa la tarifa" (change)="actualizarTarifa($event)">
                             </div>
                             <div class="form-group pt-2">
                                 <label for="archivo">Cambiar Imagen:</label>
@@ -37,7 +38,8 @@
                 <div class="form-group pt-2">
                     <label for="comentario">Descripción:</label>
                     <textarea class="form-control" id="comentario" rows="3" value="{{descripcion}}"
-                        placeholder="Escribe aquí la descripción del tipo de habitación"></textarea>
+                        placeholder="Escribe aquí la descripción del tipo de habitación"
+                        (change)="actualizarDescripcion($event)"></textarea>
                 </div>
                 <table class="table table-striped">
                     <thead>
