@@ -7,6 +7,7 @@ import { LoginComponent } from './components/Pages/login/login.component';
 import { ReservationsListComponent } from './components/Pages/reservations-list/reservations-list.component';
 import { ModifyPagesComponent } from './components/Pages/modify-pages/modify-pages.component';
 import { ManageRoomsComponent } from './components/Pages/manage-rooms/manage-rooms.component';
+import { ManageSeasonComponent } from './components/Pages/manage-season/manage-season.component';
 import { TodayHotelComponent } from './components/Pages/today-hotel/today-hotel.component';
 
 import { ModifyRoomComponent } from './components/Pages/modify-room/modify-room.component';
@@ -17,15 +18,22 @@ import { ModifyHomePageComponent } from './components/Pages/modify-by-pages/modi
 import { ModifyUbicationPageComponent } from './components/Pages/modify-by-pages/modify-ubication-page/modify-ubication-page.component';
 import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-rooms.component';
 
+import { CreateSeasonComponent } from './components/Pages/create-season/create-season.component';
+import { ModifySeasonComponent } from './components/Pages/modify-season/modify-season.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'modify-page', component: ModifyPagesComponent },
   { path: 'reservations-list', component: ReservationsListComponent },
   { path: 'manage-rooms', component: ManageRoomsComponent },
+  { path: 'manage-season', component: ManageSeasonComponent },
   { path: 'hotel-today', component: TodayHotelComponent },
   { path: 'home-page', component: HomePageComponent },
   { path: 'modify-room', component: ModifyRoomComponent },
+
+  { path: 'create-season', component: CreateSeasonComponent },
+  { path: 'modify-season', component: ModifySeasonComponent },
 
   { path: 'modify-about-us', component: ModifyAboutUsPageComponent },
   { path: 'modify-facilities', component: ModifyFacilitiesPageComponent },

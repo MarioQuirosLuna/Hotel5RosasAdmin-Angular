@@ -102,4 +102,17 @@ export class ModifyRoomComponent {
       });
     })
   }
+
+  backManageRooms(){
+    const navigationExtras = {
+      queryParams: { username: this.username },
+    };
+    this.router.navigate(['/manage-rooms'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
 }

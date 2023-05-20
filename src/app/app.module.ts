@@ -27,6 +27,9 @@ import { ModifyUbicationPageComponent } from './components/Pages/modify-by-pages
 import { ModifyRoomComponent } from './components/Pages/modify-room/modify-room.component';
 import { ModifyFacilityPageComponent } from './components/Pages/modify-by-pages/modify-facility-page/modify-facility-page.component';
 import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-rooms.component';
+import { ManageSeasonComponent } from './components/Pages/manage-season/manage-season.component';
+import { CreateSeasonComponent } from './components/Pages/create-season/create-season.component';
+import { ModifySeasonComponent } from './components/Pages/modify-season/modify-season.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-
     ModifyUbicationPageComponent,
     ModifyRoomComponent,
     ModifyFacilityPageComponent,
-    ConsultRoomsComponent
+    ConsultRoomsComponent,
+    ManageSeasonComponent,
+    CreateSeasonComponent,
+    ModifySeasonComponent
   ],
   imports: [
     BrowserModule,

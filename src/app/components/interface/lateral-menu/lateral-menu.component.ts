@@ -69,6 +69,19 @@ export class LateralMenuComponent {
     });
   }
 
+routerManageSeasons(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/manage-season'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
   routerTodayHotel(){
     const navigationExtras = {
       queryParams: { username : this.username },
