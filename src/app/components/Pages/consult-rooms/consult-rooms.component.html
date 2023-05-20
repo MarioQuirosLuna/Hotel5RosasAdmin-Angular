@@ -13,12 +13,14 @@
         </thead>
         <tbody>
           <tr>
-            <td><input class="form-control" type="date"></td>
-            <td><input class="form-control" type="date"></td>
+            <td><input class="form-control" type="date" value="{{startDate}}" (change)="updateDateStart($event)" />
+            </td>
+            <td><input class="form-control" type="date" value="{{endDate}}" (change)="updateDateEnd($event)" />
+            </td>
             <td>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-lg">Tipo de Habitación</span>
-                <select class="form-select form-select-sm" formControlName="roomType">
+                <select class="form-select form-select-sm" formControlName="roomType" (change)="updateId($event)">
                   <option *ngFor="let roomType of roomTypes" value="{{roomType.pK_Tipo_Habitacion}}">
                     {{roomType.nombre }}</option>
                 </select>
@@ -34,16 +36,18 @@
         <table class="table" id="miTabla" *ngIf="tablaVisible">
           <thead>
             <tr>
-              <th scope="col">Número de Habitación</th>
               <th scope="col">Tipo</th>
-              <th scope="col">Costo Estadía</th>
+              <th scope="col">Número de Habitación</th>
+              <th scope="col">Tarifa</th>
+              <th scope="col">Estado</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let reservation of reservations;">
-              <td>{{reservation.date}}</td>
-              <td>{{reservation.id_reserva}}</td>
-              <td>{{reservation.firstName}}</td>
+            <tr *ngFor="let room of rooms;">
+              <td>{{room.tipo_Habitacion}}</td>
+              <td>{{room.numero_Habitacion}}</td>
+              <td>{{room.tarifa}}</td>
+              <td>{{room.estado}}</td>
             </tr>
           </tbody>
         </table>

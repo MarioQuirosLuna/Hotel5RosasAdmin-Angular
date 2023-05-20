@@ -49,35 +49,35 @@ export class ModifyRoomComponent {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files ? input.files[0] : null;
-  
+
     if (file) {
       const reader = new FileReader();
-  
+
       reader.onloadend = () => {
         const base64String = reader.result as string;
         this.imagen = base64String;
         // Aquí puedes guardar 'base64String' en tu base de datos o realizar cualquier otra operación necesaria
       };
-  
+
       reader.readAsDataURL(file);
       // Inicia la lectura del archivo y activa la función 'onloadend' cuando la lectura se complete
     }
   }
-  
+
 
   actualizarNombre(nuevoValor: Event) {
-    if(nuevoValor.target){
+    if (nuevoValor.target) {
       this.nombre = String((nuevoValor.target as HTMLInputElement).value);
     }
   }
   actualizarDescripcion(nuevoValor: Event) {
-    if(nuevoValor.target){
+    if (nuevoValor.target) {
       this.descripcion = String((nuevoValor.target as HTMLInputElement).value);
     }
   }
 
   actualizarTarifa(nuevoValor: Event) {
-    if(nuevoValor.target){
+    if (nuevoValor.target) {
       this.tarifa = Number((nuevoValor.target as HTMLInputElement).value);
     }
   }
@@ -101,11 +101,5 @@ export class ModifyRoomComponent {
         );
       });
     })
-
-    console.log(this.pk_tipo_habitacion);
-    console.log(this.nombre);
-    console.log(this.descripcion);
-    console.log(this.tarifa);
-    console.log(this.imagen);
   }
 }
