@@ -45,7 +45,6 @@ export class CreatePromotionComponent {
 
   addSeason(){
     //Call Service to Add Season
-    console.log(this.seasonForm.value)
     this.servicePromotion.postCreatePromotion({
       FK_Temporada: this.seasonForm.value.nameSeason,
       FK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,

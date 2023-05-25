@@ -27,7 +27,6 @@ export class SeasonsServiceService {
 
   apiSeasonPutURL = '/Entity_Temporada/PutSeason';
   putSeason(season : any): Observable<any> {
-    console.log(season)
     return this.http.put(environment.url + this.apiSeasonPutURL, season);
   }
 

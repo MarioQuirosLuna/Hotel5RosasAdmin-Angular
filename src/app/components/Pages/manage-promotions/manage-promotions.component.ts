@@ -42,8 +42,6 @@ export class ManagePromotionsComponent {
   }
 
   goEdit(_id: Number, _nameSeason: String, _roomType: String) {
-    console.log(_nameSeason)
-    console.log(_roomType)
     const navigationExtras = {
       queryParams: { username : this.username , id : _id , nameSeason : _nameSeason , roomType : _roomType},
     };

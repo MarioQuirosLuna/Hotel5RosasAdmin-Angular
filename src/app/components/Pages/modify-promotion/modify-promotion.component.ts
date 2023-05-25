@@ -14,7 +14,7 @@ import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-serv
 export class ModifyPromotionComponent {
   username: String = '';
 
-  _id: Number = 0;
+  _id: number = 0;
   seasonForm: FormGroup;
 
   roomsTypes: any = [];
@@ -24,6 +24,8 @@ export class ModifyPromotionComponent {
   typeRoom: String = '';
   promotionSeasonID: Number = 0;
   typeRoomID: Number = 0;
+  promotionId : Number = 0;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -70,7 +72,8 @@ export class ModifyPromotionComponent {
       }
 
       this.servicePromotion.getPromotionId(this._id).subscribe((promotion) => {
-        this._id = promotion.pK_Temporada;
+        console.log(promotion.pK_Oferta_Temporada)
+        this.promotionId = promotion.pK_Oferta_Temporada;
         this.seasonForm = new FormGroup({
           nameSeason: new FormControl(this.promotionSeasonID),
           typeHabitacion: new FormControl(this.typeRoomID),
@@ -84,23 +87,17 @@ export class ModifyPromotionComponent {
   updateSeason() {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
-      this._id = params['id'];
       this.promotionSeason = params['nameSeason'];
       this.typeRoom = params['roomType'];
     });
     //Call Service to Add Season
-    console.log(this._id)
-    console.log(this.seasonForm.value.nameSeason)
-    console.log( this.seasonForm.value.typeHabitacion)
-    console.log(this.seasonForm.value.promotion)
     this.servicePromotion
       .putPromotion({
-        pK_Oferta_Temporada: this._id,
-        fK_Temporada: this.seasonForm.value.nameSeason,
-        fK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
-        oferta: this.seasonForm.value.promotion,
-      })
-      .subscribe(() => {
+        pK_Oferta_Temporada: this.promotionId,
+        FK_Temporada: this.seasonForm.value.nameSeason,
+        FK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
+        Oferta: this.seasonForm.value.promotion,
+      }).subscribe(() => {
         Swal.fire({
           position: "center",
           icon: "success",

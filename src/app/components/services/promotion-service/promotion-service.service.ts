@@ -31,6 +31,7 @@ export class PromotionServiceService {
 
   apiPromotionPutURL = '/Entity_OfertaTemporada/UpdateSeasonOffer/';
   putPromotion(promotion : any): Observable<any> {
+    console.log(promotion)
     return this.http.put(environment.url + this.apiPromotionPutURL, promotion);
   }
 
