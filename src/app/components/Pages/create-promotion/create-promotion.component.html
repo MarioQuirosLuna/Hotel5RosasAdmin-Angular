@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="header"><app-header-home [username]="username"></app-header-home></div>
+
+  <div class="lateral-menu"><app-lateral-menu [username]="username"></app-lateral-menu></div>
+
+  <div class="information">
+    <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
+      <h1> Crear Oferta </h1>
+
+      <form [formGroup]="seasonForm">
+
+        <label for="basic-url" class="form-label">Temporada</label>
+        <div class="input-group mb-3">
+
+          <select class="form-select" formControlName="nameSeason">
+            <option *ngFor="let seasons of seasonsList" [ngValue]="seasons.pK_Temporada"> {{ seasons.nombre }}</option>
+          </select>
+
+          <!--<input id="nameSeason" class="form-control" type="text" formControlName="nameSeason" />-->
+        </div>
+
+        <label for="basic-url" class="form-label">Tipo Habitación</label>
+        <div class="input-group mb-3">
+
+          <select class="form-select" formControlName="typeHabitacion">
+            <option *ngFor="let typeHabitacion of roomsTypes" [ngValue]="typeHabitacion.pK_Tipo_Habitacion"> {{ typeHabitacion.nombre }}
+            </option>
+          </select>
+
+          <!--<input id="seasonBeginDate" class="form-control" type="datetime-local" formControlName="typeHabitacion"/>-->
+        </div>
+
+        <label for="basic-url" class="form-label">Porcentaje Descuento</label>
+        <div class="input-group mb-3">
+          <input id="promotion" class="form-control" type="number" formControlName="promotion" min="1" max="100">
+        </div>
+
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-outline-primary" (click)="addSeason()">Aceptar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
+
+  <div class="footer"><app-footer></app-footer></div>
+
+</div>

@@ -36,7 +36,7 @@ export class ConsultRoomsComponent {
   showTable() {
     if (this.startDate != '' && this.endDate != '' && this.roomId != 0) {
       this.tablaVisible = true;
-      this.resultText = ' - Resultado'
+      this.resultText = ' - Habitaciones Libres'
 
       this.serviceRoom.apiRoomGetAvailability(
         this.startDate,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-season',
@@ -35,6 +36,13 @@ export class CreateSeasonComponent {
       Fecha_Inicio: this.seasonForm.value.seasonBeginDate,
       Fecha_Fin: this.seasonForm.value.seasonEndDate,
     }).subscribe(() => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "El registro se creó correctamente!",
+        showConfirmButton: false,
+        timer: 1800,
+      });
       const navigationExtras = {
         queryParams: { username: this.username },
       };

@@ -20,6 +20,9 @@ import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-
 
 import { CreateSeasonComponent } from './components/Pages/create-season/create-season.component';
 import { ModifySeasonComponent } from './components/Pages/modify-season/modify-season.component';
+import { ManagePromotionsComponent } from './components/Pages/manage-promotions/manage-promotions.component';
+import { CreatePromotionComponent } from './components/Pages/create-promotion/create-promotion.component';
+import { ModifyPromotionComponent } from './components/Pages/modify-promotion/modify-promotion.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,12 +31,15 @@ const routes: Routes = [
   { path: 'reservations-list', component: ReservationsListComponent },
   { path: 'manage-rooms', component: ManageRoomsComponent },
   { path: 'manage-season', component: ManageSeasonComponent },
+  { path: 'manage-promotions', component: ManagePromotionsComponent },
+  { path: 'create-promotions', component: CreatePromotionComponent },
   { path: 'hotel-today', component: TodayHotelComponent },
   { path: 'home-page', component: HomePageComponent },
   { path: 'modify-room', component: ModifyRoomComponent },
 
   { path: 'create-season', component: CreateSeasonComponent },
   { path: 'modify-season', component: ModifySeasonComponent },
+  { path: 'modify-promotion', component: ModifyPromotionComponent },
 
   { path: 'modify-about-us', component: ModifyAboutUsPageComponent },
   { path: 'modify-facilities', component: ModifyFacilitiesPageComponent },

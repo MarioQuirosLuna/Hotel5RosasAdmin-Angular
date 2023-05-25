@@ -30,6 +30,9 @@ import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-
 import { ManageSeasonComponent } from './components/Pages/manage-season/manage-season.component';
 import { CreateSeasonComponent } from './components/Pages/create-season/create-season.component';
 import { ModifySeasonComponent } from './components/Pages/modify-season/modify-season.component';
+import { ManagePromotionsComponent } from './components/Pages/manage-promotions/manage-promotions.component';
+import { CreatePromotionComponent } from './components/Pages/create-promotion/create-promotion.component';
+import { ModifyPromotionComponent } from './components/Pages/modify-promotion/modify-promotion.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { ModifySeasonComponent } from './components/Pages/modify-season/modify-s
     ConsultRoomsComponent,
     ManageSeasonComponent,
     CreateSeasonComponent,
-    ModifySeasonComponent
+    ModifySeasonComponent,
+    ManagePromotionsComponent,
+    CreatePromotionComponent,
+    ModifyPromotionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
 import Swal from 'sweetalert2';
+import { PromotionServiceService } from '../../services/promotion-service/promotion-service.service';
 
 @Component({
-  selector: 'app-manage-season',
-  templateUrl: './manage-season.component.html',
-  styleUrls: ['./manage-season.component.css'],
+  selector: 'app-manage-promotions',
+  templateUrl: './manage-promotions.component.html',
+  styleUrls: ['./manage-promotions.component.css']
 })
-export class ManageSeasonComponent {
+export class ManagePromotionsComponent {
   username: String = '';
-  seasons: any = [];
+  promotions: any = [];
 
   constructor(
     private route: ActivatedRoute,
-    private serviceSeason: SeasonsServiceService,
+    private servicePromotion: PromotionServiceService,
     private router: Router
   ) {}
 
@@ -22,17 +22,17 @@ export class ManageSeasonComponent {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
-    this.serviceSeason.getSeasons().subscribe((seasons) => {
-      this.seasons = seasons;
-      console.log(this.seasons);
+    this.servicePromotion.getPromotion().subscribe((seasons) => {
+      this.promotions = seasons;
+      console.log(this.promotions);
     });
   }
 
-  routerCreateSeason() {
+  routerCreatePromotion() {
     const navigationExtras = {
       queryParams: { username : this.username },
     };
-    this.router.navigate(['/create-season'], navigationExtras).then(() => {
+    this.router.navigate(['/create-promotions'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
         document.title,
@@ -41,11 +41,13 @@ export class ManageSeasonComponent {
     });
   }
 
-  goEdit(_id: Number) {
+  goEdit(_id: Number, _nameSeason: String, _roomType: String) {
+    console.log(_nameSeason)
+    console.log(_roomType)
     const navigationExtras = {
-      queryParams: { username : this.username , id : _id },
+      queryParams: { username : this.username , id : _id , nameSeason : _nameSeason , roomType : _roomType},
     };
-    this.router.navigate(['/modify-season'], navigationExtras).then(() => {
+    this.router.navigate(['/modify-promotion'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
         document.title,
@@ -55,7 +57,7 @@ export class ManageSeasonComponent {
   }
 
   goDelete(_id: Number) {
-    this.serviceSeason.deleteSeason(_id).subscribe((res) => {
+    this.servicePromotion.deletePromotion(_id).subscribe((res) => {
       Swal.fire({
         position: "center",
         icon: "success",

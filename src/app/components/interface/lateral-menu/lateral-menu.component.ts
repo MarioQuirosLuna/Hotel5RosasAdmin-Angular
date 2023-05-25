@@ -4,22 +4,20 @@ import { Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-lateral-menu',
   templateUrl: './lateral-menu.component.html',
-  styleUrls: ['./lateral-menu.component.css']
+  styleUrls: ['./lateral-menu.component.css'],
 })
 export class LateralMenuComponent {
+  @Input() username: String = '';
 
-  @Input() username: String = "";
-
-
-  constructor(private router: Router){
+  constructor(private router: Router) {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
   }
 
-  routerHome(){
+  routerHome() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/home-page'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -30,9 +28,9 @@ export class LateralMenuComponent {
     });
   }
 
-  routerModifyPages(){
+  routerModifyPages() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/modify-page'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -43,9 +41,9 @@ export class LateralMenuComponent {
     });
   }
 
-  routerReservationList(){
+  routerReservationList() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/reservations-list'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -56,9 +54,9 @@ export class LateralMenuComponent {
     });
   }
 
-  routerManageRooms(){
+  routerManageRooms() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/manage-rooms'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -69,9 +67,9 @@ export class LateralMenuComponent {
     });
   }
 
-routerManageSeasons(){
+  routerManageSeasons() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/manage-season'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -82,9 +80,22 @@ routerManageSeasons(){
     });
   }
 
-  routerTodayHotel(){
+  routerManagePromotions(){
     const navigationExtras = {
       queryParams: { username : this.username },
+    };
+    this.router.navigate(['/manage-promotions'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerTodayHotel() {
+    const navigationExtras = {
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/hotel-today'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -95,9 +106,9 @@ routerManageSeasons(){
     });
   }
 
-  routerConsultRooms(){
+  routerConsultRooms() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/consult-rooms'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -108,9 +119,9 @@ routerManageSeasons(){
     });
   }
 
-  routerPublicity(){
+  routerPublicity() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/contact-us'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -120,6 +131,4 @@ routerManageSeasons(){
       );
     });
   }
-
-
 }
