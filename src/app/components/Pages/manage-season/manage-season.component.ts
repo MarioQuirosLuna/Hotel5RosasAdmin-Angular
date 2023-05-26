@@ -55,15 +55,27 @@ export class ManageSeasonComponent {
   }
 
   goDelete(_id: Number) {
-    this.serviceSeason.deleteSeason(_id).subscribe((res) => {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "El registro se eliminó correctamente!",
-        showConfirmButton: false,
-        timer: 1800,
-      });
-      this.ngOnInit();
-    });
+    Swal.fire({
+      title: 'Quieres eliminar el registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: "No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.serviceSeason.deleteSeason(_id).subscribe((res) => {
+          this.ngOnInit();
+        });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "El registro se eliminó correctamente!",
+          showConfirmButton: false,
+          timer: 1800,
+        });
+      }
+    })
   }
 }

@@ -6,7 +6,7 @@ import { PromotionServiceService } from '../../services/promotion-service/promot
 @Component({
   selector: 'app-manage-promotions',
   templateUrl: './manage-promotions.component.html',
-  styleUrls: ['./manage-promotions.component.css']
+  styleUrls: ['./manage-promotions.component.css'],
 })
 export class ManagePromotionsComponent {
   username: String = '';
@@ -30,7 +30,7 @@ export class ManagePromotionsComponent {
 
   routerCreatePromotion() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/create-promotions'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -43,7 +43,12 @@ export class ManagePromotionsComponent {
 
   goEdit(_id: Number, _nameSeason: String, _roomType: String) {
     const navigationExtras = {
-      queryParams: { username : this.username , id : _id , nameSeason : _nameSeason , roomType : _roomType},
+      queryParams: {
+        username: this.username,
+        id: _id,
+        nameSeason: _nameSeason,
+        roomType: _roomType,
+      },
     };
     this.router.navigate(['/modify-promotion'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -55,15 +60,27 @@ export class ManagePromotionsComponent {
   }
 
   goDelete(_id: Number) {
-    this.servicePromotion.deletePromotion(_id).subscribe((res) => {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "El registro se eliminó correctamente!",
-        showConfirmButton: false,
-        timer: 1800,
-      });
-      this.ngOnInit();
+    Swal.fire({
+      title: 'Quieres eliminar el registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicePromotion.deletePromotion(_id).subscribe((res) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'El registro se eliminó correctamente!',
+            showConfirmButton: false,
+            timer: 1800,
+          });
+          this.ngOnInit();
+        });
+      }
     });
   }
 }
