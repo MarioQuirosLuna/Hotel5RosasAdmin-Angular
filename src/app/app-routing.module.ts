@@ -1,3 +1,4 @@
+import { PublicityViewComponent } from './components/Pages/publicity-view/publicity-view.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -23,6 +24,9 @@ import { ModifySeasonComponent } from './components/Pages/modify-season/modify-s
 import { ManagePromotionsComponent } from './components/Pages/manage-promotions/manage-promotions.component';
 import { CreatePromotionComponent } from './components/Pages/create-promotion/create-promotion.component';
 import { ModifyPromotionComponent } from './components/Pages/modify-promotion/modify-promotion.component';
+import { ModifyFacilityPageComponent } from './components/Pages/modify-by-pages/modify-facility-page/modify-facility-page.component';
+import { PublicityCreateComponent } from './components/Pages/publicity-create/publicity-create.component';
+import { PublicityModifyComponent } from './components/Pages/publicity-modify/publicity-modify.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,11 +35,15 @@ const routes: Routes = [
   { path: 'reservations-list', component: ReservationsListComponent },
   { path: 'manage-rooms', component: ManageRoomsComponent },
   { path: 'manage-season', component: ManageSeasonComponent },
+  { path: 'manage-publicity', component: PublicityViewComponent },
   { path: 'manage-promotions', component: ManagePromotionsComponent },
   { path: 'create-promotions', component: CreatePromotionComponent },
+  { path: 'create-publicity', component: PublicityCreateComponent },
   { path: 'hotel-today', component: TodayHotelComponent },
   { path: 'home-page', component: HomePageComponent },
   { path: 'modify-room', component: ModifyRoomComponent },
+  { path: 'publicity-view', component: PublicityViewComponent },
+  { path: 'modify-publicity', component: PublicityModifyComponent },
 
   { path: 'create-season', component: CreateSeasonComponent },
   { path: 'modify-season', component: ModifySeasonComponent },
@@ -43,6 +51,7 @@ const routes: Routes = [
 
   { path: 'modify-about-us', component: ModifyAboutUsPageComponent },
   { path: 'modify-facilities', component: ModifyFacilitiesPageComponent },
+  { path: 'modify-facility', component: ModifyFacilityPageComponent },
   { path: 'modify-home', component: ModifyHomePageComponent },
   { path: 'modify-ubication', component: ModifyUbicationPageComponent },
   { path: 'consult-rooms', component: ConsultRoomsComponent },

@@ -123,7 +123,7 @@ export class LateralMenuComponent {
     const navigationExtras = {
       queryParams: { username: this.username },
     };
-    this.router.navigate(['/contact-us'], navigationExtras).then(() => {
+    this.router.navigate(['/manage-publicity'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
         document.title,

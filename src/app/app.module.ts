@@ -33,6 +33,9 @@ import { ModifySeasonComponent } from './components/Pages/modify-season/modify-s
 import { ManagePromotionsComponent } from './components/Pages/manage-promotions/manage-promotions.component';
 import { CreatePromotionComponent } from './components/Pages/create-promotion/create-promotion.component';
 import { ModifyPromotionComponent } from './components/Pages/modify-promotion/modify-promotion.component';
+import { PublicityCreateComponent } from './components/Pages/publicity-create/publicity-create.component';
+import { PublicityModifyComponent } from './components/Pages/publicity-modify/publicity-modify.component';
+import { PublicityViewComponent } from './components/Pages/publicity-view/publicity-view.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { ModifyPromotionComponent } from './components/Pages/modify-promotion/mo
     ModifySeasonComponent,
     ManagePromotionsComponent,
     CreatePromotionComponent,
-    ModifyPromotionComponent
+    ModifyPromotionComponent,
+    PublicityCreateComponent,
+    PublicityModifyComponent,
+    PublicityViewComponent
   ],
   imports: [
     BrowserModule,

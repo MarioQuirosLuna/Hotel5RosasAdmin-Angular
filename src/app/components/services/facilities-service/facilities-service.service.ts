@@ -20,6 +20,15 @@ export class FacilitiesServiceService {
     return this.http.get(environment.url+this.apiRoomsURL);
   }
 
+  apiFacilityURL = '/Entity_Pagina/GetEasePage';
+  getFacility(): Observable<any> {
+    return this.http.get(environment.url + this.apiFacilityURL);
+  }
 
+  apiURLModifyFacility = '/Entity_Pagina/UpdateEase/';
+  putFacility(object : any): Observable<any> {
+    console.log(object)
+    return this.http.put(environment.url + this.apiURLModifyFacility, object);
+  }
 
 }

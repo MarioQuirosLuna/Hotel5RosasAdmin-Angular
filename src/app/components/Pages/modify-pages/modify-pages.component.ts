@@ -46,7 +46,7 @@ export class ModifyPagesComponent {
     const navigationExtras = {
       queryParams: { username : this.username },
     };
-    this.router.navigate(['/modify-facilities'], navigationExtras).then(() => {
+    this.router.navigate(['/modify-facility'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
         document.title,

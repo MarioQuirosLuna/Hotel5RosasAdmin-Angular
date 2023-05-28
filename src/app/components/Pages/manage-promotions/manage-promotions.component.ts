@@ -24,7 +24,6 @@ export class ManagePromotionsComponent {
     });
     this.servicePromotion.getPromotion().subscribe((seasons) => {
       this.promotions = seasons;
-      console.log(this.promotions);
     });
   }
 
