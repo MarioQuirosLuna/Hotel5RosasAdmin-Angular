@@ -17,28 +17,28 @@
             <th scope="col">Apellidos</th>
             <th scope="col">Email</th>
             <th scope="col">Tarjeta</th>
-            <th scope="col">Transaccion</th>
-            <th scope="col">Fecha Llegada</th>
             <th scope="col">Fecha Salida</th>
+            <th scope="col">Fecha Llegada</th>
+            <th scope="col">Costo Total</th>
             <th scope="col">Tipo</th>
             <th scope="col">Ver</th>
             <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let reservation of reservations;">
-            <td>{{reservation.date}}</td>
-            <td>{{reservation.id_reserva}}</td>
-            <td>{{reservation.firstName}}</td>
-            <td>{{reservation.lastName}}</td>
-            <td>{{reservation.email}}</td>
-            <td>{{reservation.tarjeta}}</td>
-            <td>{{reservation.transaction}}</td>
-            <td>{{reservation.dateStart}}</td>
-            <td>{{reservation.dateEnd}}</td>
-            <td>{{reservation.type}}</td>
-            <td><a routerLink="">Ver</a></td>
-            <td><a routerLink="">Eliminar</a></td>
+          <tr *ngFor="let reservation of reservations_list;">
+            <td>{{reservation.fecha_Transaccion | date : 'YYYY-MM-dd'}}</td>
+            <td>{{reservation.pK_Reserva}}</td>
+            <td>{{reservation.nombre_Cliente}}</td>
+            <td>{{reservation.apellidos_Cliente}}</td>
+            <td>{{reservation.correo}}</td>
+            <td>{{reservation.numero_Tarjeta}}</td>
+            <td>{{reservation.fecha_Fin | date : 'YYYY-MM-dd'}}</td>
+            <td>{{reservation.fecha_Inicio | date : 'YYYY-MM-dd'}}</td>
+            <td>{{reservation.tarifa_Total}}</td>
+            <td>{{reservation.tipo_Habitacion}}</td>
+            <td><button type="reset" class="btn btn-primary" (click)="viewReservation(reservation.pK_Reserva)">Ver</button></td>
+            <td><button type="reset" class="btn btn-danger" (click)="deleteReservation(reservation.pK_Reserva)">Eliminar</button></td>
           </tr>
         </tbody>
       </table>

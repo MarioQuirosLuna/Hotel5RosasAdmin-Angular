@@ -36,6 +36,8 @@ import { ModifyPromotionComponent } from './components/Pages/modify-promotion/mo
 import { PublicityCreateComponent } from './components/Pages/publicity-create/publicity-create.component';
 import { PublicityModifyComponent } from './components/Pages/publicity-modify/publicity-modify.component';
 import { PublicityViewComponent } from './components/Pages/publicity-view/publicity-view.component';
+import { ReservationViewComponent } from './components/Pages/reservation-view/reservation-view.component';
+import { ModifyContactUsComponent } from './components/Pages/modify-by-pages/modify-contact-us/modify-contact-us.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { PublicityViewComponent } from './components/Pages/publicity-view/public
     ModifyPromotionComponent,
     PublicityCreateComponent,
     PublicityModifyComponent,
-    PublicityViewComponent
+    PublicityViewComponent,
+    ReservationViewComponent,
+    ModifyContactUsComponent
   ],
   imports: [
     BrowserModule,

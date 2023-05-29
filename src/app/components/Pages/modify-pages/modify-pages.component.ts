@@ -68,4 +68,17 @@ export class ModifyPagesComponent {
     });
   }
 
+  routerContactUs(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/modify-contact-us'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
 }
