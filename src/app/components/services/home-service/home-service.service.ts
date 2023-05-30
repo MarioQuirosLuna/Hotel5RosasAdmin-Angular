@@ -10,15 +10,19 @@ export class HomeServiceService {
   constructor(private http: HttpClient) {}
 
   apiURL = '/Entity_Pagina/GetHomePage';
-
   getHomeInfo(): Observable<any> {
     return this.http.get(environment.url+this.apiURL);
   }
 
   apiURLTodayHotel = '/Entity_Habitacion/GetEstadoHabitacion';
-
   getHotelToday(): Observable<any> {
     return this.http.get(environment.url+this.apiURLTodayHotel);
+  }
+
+  apiURLModifyHome = '/Entity_Pagina/UpdateHome/';
+  putHome(home : any): Observable<any> {
+    console.log(home)
+    return this.http.put(environment.url + this.apiURLModifyHome, home);
   }
 
 }

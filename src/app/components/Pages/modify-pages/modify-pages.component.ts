@@ -46,7 +46,7 @@ export class ModifyPagesComponent {
     const navigationExtras = {
       queryParams: { username : this.username },
     };
-    this.router.navigate(['/modify-facilities'], navigationExtras).then(() => {
+    this.router.navigate(['/modify-facility'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
         document.title,
@@ -60,6 +60,19 @@ export class ModifyPagesComponent {
       queryParams: { username : this.username },
     };
     this.router.navigate(['/modify-ubication'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  routerContactUs(){
+    const navigationExtras = {
+      queryParams: { username : this.username },
+    };
+    this.router.navigate(['/modify-contact-us'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
         document.title,

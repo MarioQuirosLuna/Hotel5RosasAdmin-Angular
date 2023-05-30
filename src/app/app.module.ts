@@ -27,6 +27,17 @@ import { ModifyUbicationPageComponent } from './components/Pages/modify-by-pages
 import { ModifyRoomComponent } from './components/Pages/modify-room/modify-room.component';
 import { ModifyFacilityPageComponent } from './components/Pages/modify-by-pages/modify-facility-page/modify-facility-page.component';
 import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-rooms.component';
+import { ManageSeasonComponent } from './components/Pages/manage-season/manage-season.component';
+import { CreateSeasonComponent } from './components/Pages/create-season/create-season.component';
+import { ModifySeasonComponent } from './components/Pages/modify-season/modify-season.component';
+import { ManagePromotionsComponent } from './components/Pages/manage-promotions/manage-promotions.component';
+import { CreatePromotionComponent } from './components/Pages/create-promotion/create-promotion.component';
+import { ModifyPromotionComponent } from './components/Pages/modify-promotion/modify-promotion.component';
+import { PublicityCreateComponent } from './components/Pages/publicity-create/publicity-create.component';
+import { PublicityModifyComponent } from './components/Pages/publicity-modify/publicity-modify.component';
+import { PublicityViewComponent } from './components/Pages/publicity-view/publicity-view.component';
+import { ReservationViewComponent } from './components/Pages/reservation-view/reservation-view.component';
+import { ModifyContactUsComponent } from './components/Pages/modify-by-pages/modify-contact-us/modify-contact-us.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +60,18 @@ import { ConsultRoomsComponent } from './components/Pages/consult-rooms/consult-
     ModifyUbicationPageComponent,
     ModifyRoomComponent,
     ModifyFacilityPageComponent,
-    ConsultRoomsComponent
+    ConsultRoomsComponent,
+    ManageSeasonComponent,
+    CreateSeasonComponent,
+    ModifySeasonComponent,
+    ManagePromotionsComponent,
+    CreatePromotionComponent,
+    ModifyPromotionComponent,
+    PublicityCreateComponent,
+    PublicityModifyComponent,
+    PublicityViewComponent,
+    ReservationViewComponent,
+    ModifyContactUsComponent
   ],
   imports: [
     BrowserModule,

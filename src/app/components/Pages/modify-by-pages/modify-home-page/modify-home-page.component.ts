@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeServiceService } from 'src/app/components/services/home-service/home-service.service';
-import { Clipboard } from '@angular/cdk/clipboard';
-import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modify-home-page',
@@ -16,12 +16,12 @@ export class ModifyHomePageComponent {
 
   constructor(
     private service: HomeServiceService,
-    private clipboard: Clipboard,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private route: Router
   ) {
     this.service.getHomeInfo().subscribe((hotelInfo) => {
       this.imageHotel = hotelInfo.imagen;
-      this.information = hotelInfo.informacion.replace(/\s/g,' ');
+      this.information = hotelInfo.informacion.replace(/\s/g, ' ');
       console.log(hotelInfo);
     });
     this.router.queryParams.subscribe((params) => {
@@ -29,4 +29,67 @@ export class ModifyHomePageComponent {
     });
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files ? input.files[0] : null;
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        this.imageHotel = base64String;
+        // Aquí puedes guardar 'base64String' en tu base de datos o realizar cualquier otra operación necesaria
+      };
+
+      reader.readAsDataURL(file);
+      // Inicia la lectura del archivo y activa la función 'onloadend' cuando la lectura se complete
+    }
+  }
+
+  updateInformation(nuevoValor: Event) {
+    if (nuevoValor.target) {
+      this.information = String((nuevoValor.target as HTMLInputElement).value);
+    }
+  }
+
+  saveHomePage() {
+    this.service
+      .putHome({
+        Informacion: this.information,
+        Imagen: this.imageHotel,
+      })
+      .subscribe(() => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'El registro se modificó correctamente!',
+          showConfirmButton: false,
+          timer: 1800,
+        });
+        const navigationExtras = {
+          queryParams: { username: this.username },
+        };
+        this.route.navigate(['/modify-page'], navigationExtras).then(() => {
+          window.history.replaceState(
+            {},
+            document.title,
+            this.route.url.split('?')[0]
+          );
+        });
+      });
+  }
+
+  backPage() {
+    const navigationExtras = {
+      queryParams: { username: this.username },
+    };
+    this.route.navigate(['/modify-page'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.route.url.split('?')[0]
+      );
+    });
+  }
 }

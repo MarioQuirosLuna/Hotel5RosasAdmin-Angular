@@ -14,4 +14,10 @@ export class UbicationServiceService {
   getUbication(): Observable<any> {
     return this.http.get(environment.url+this.apiURL);
   }
+
+  apiURLModifyUbication = '/Entity_Pagina/UpdateHowToGet';
+  putUbication(ubication : any): Observable<any> {
+    return this.http.put(environment.url + this.apiURLModifyUbication, ubication);
+  }
+
 }

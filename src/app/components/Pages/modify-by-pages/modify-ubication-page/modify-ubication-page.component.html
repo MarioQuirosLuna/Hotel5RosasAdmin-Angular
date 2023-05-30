@@ -10,19 +10,16 @@
 
       <h3>Cómo llegar</h3>
 
-      <form>
 
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-          style="resize: none; text-align: justify;">{{ubication}}</textarea>
+          style="resize: none; text-align: justify;" (change)="updateInformation($event)">{{ubication}}</textarea>
         <br>
         <br>
         <div style="margin-left: 800px;">
-          <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;">Aceptar</button>
-          <button type="reset" class="btn btn-outline-primary">Cancelar</button>
+          <button type="reset" class="btn btn-danger me-3" (click)="backPage()">Volver</button>
+          <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;" (click)="saveUbicationPage()">Guardar</button>
         </div>
 
-
-      </form>
 
     </div>
   </div>

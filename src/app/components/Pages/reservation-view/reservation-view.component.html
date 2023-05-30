@@ -1,0 +1,63 @@
+<div class="container">
+
+  <div class="header"><app-header-home [username]="username"></app-header-home></div>
+
+  <div class="lateral-menu"><app-lateral-menu [username]="username"></app-lateral-menu></div>
+
+  <div class="information">
+    <h2>Listado de Reservaciones - Ver Reserva</h2>
+    <div class="border border-1 p-3 m-3 rounded-3 border-dark">
+      <div class="d-flex justify-content-between pb-2 border-bottom border-2">
+        <div class="d-flex">
+
+          <span class="ps-3">
+            <h4>Id Reserva:
+              <span class="text-primary">{{objectPage.pK_Reserva}}</span>
+            </h4>
+            <h4>Tipo Habitación:
+              <span class="text-primary">{{objectPage.tipo_Habitacion}}</span>
+            </h4>
+            <h4>Nombre Cliente:
+              <span class="text-primary">{{objectPage.nombre_Cliente}}</span>
+            </h4>
+            <h4>Apellidos Cliente:
+              <span class="text-primary">{{objectPage.apellidos_Cliente}}</span>
+            </h4>
+            <h4>Número Tarjeta:
+              <span class="text-primary">{{objectPage.numero_Tarjeta}}</span>
+            </h4>
+            <h4>Email:
+              <span class="text-primary">{{objectPage.correo}}</span>
+            </h4>
+            <h4>Fecha Transaccion:
+              <span class="text-primary">{{objectPage.fecha_Transaccion | date : 'YYYY-MM-dd'}}</span>
+            </h4>
+            <h4>Fecha Inicio:
+              <span class="text-primary">{{objectPage.fecha_Inicio | date : 'YYYY-MM-dd'}}</span>
+            </h4>
+            <h4>Fecha Fin:
+              <span class="text-primary">{{objectPage.fecha_Fin | date : 'YYYY-MM-dd'}}</span>
+            </h4>
+            <h4>Costo Total:
+              <span class="text-primary">{{objectPage.tarifa_Total}}</span>
+            </h4>
+          </span>
+
+        </div>
+        <span>
+          <button type="button" class="btn btn-danger m-1"
+            (click)="deleteReservation(objectPage.pK_Reserva)">Eliminar</button>
+          <button type="button" class="btn btn-primary"
+            (click)="downloadReservation(objectPage.pK_Reserva)">Reporte</button>
+        </span>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
+
+  <div class="footer"><app-footer></app-footer></div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+
+  <div class="header"><app-header-home [username]="username"></app-header-home></div>
+
+  <div class="lateral-menu"><app-lateral-menu [username]="username"></app-lateral-menu></div>
+
+  <div class="information">
+    <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
+      <h1> Administrar Ofertas <a routerLink="/create-promotions" (click)="routerCreatePromotion()" style="padding-left: 20px;">Crear Oferta</a></h1>
+
+      <div *ngFor="let promotion of promotions;">
+        <div class="border border-1 p-3 m-3 rounded-3 border-dark">
+          <div class="d-flex justify-content-between pb-2 border-bottom border-2">
+            <div class="d-flex">
+              <span class="ps-3">
+                <h4>Temporada:
+                  <span class="text-primary">{{promotion.temporada}}</span>
+                </h4>
+                <h4>Tipo Habitación:
+                  <span class="text-primary">{{promotion.tipo_Habitacion}}</span>
+                </h4>
+                <h4>Descuento:
+                  <span class="text-primary">%{{promotion.oferta}}</span>
+                </h4>
+              </span>
+            </div>
+            <span>
+              <button type="button" class="btn btn-primary" (click)="goEdit(promotion.pK_Oferta_Temporada, promotion.temporada,promotion.tipo_Habitacion)">Editar</button>
+              <button type="button" class="btn btn-danger m-1" (click)="goDelete(promotion.pK_Oferta_Temporada)">Eliminar</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="area-publicity"><app-area-publicity></app-area-publicity></div>
+
+  <div class="footer"><app-footer></app-footer></div>
+
+</div>

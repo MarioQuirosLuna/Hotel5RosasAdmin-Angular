@@ -10,10 +10,9 @@
 
       <h3>Home</h3>
 
-      <form>
 
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-          style="resize: none; text-align: justify;">{{information}}</textarea>
+          style="resize: none; text-align: justify;" (change)="updateInformation($event)">{{information}}</textarea>
         <br>
 
         <div class="information d-flex">
@@ -25,24 +24,16 @@
               <div class="form-example" style="padding-left: 10px; width: 490px; margin-top: 70px;">
                 <label for="email" class="col-form-label">Subir nueva imagen: </label>
                 <br>
-                <input type="text" style="width: 60%; border-radius: 0.25rem; border: 1px solid #ced4da">
-                <button type="file" class="btn btn-outline-primary" style="margin-left: 10px;">Buscar</button>
+                <input type="file" class="custom-file-input" id="archivo" (change)="onFileSelected($event)">
               </div>
             </form>
           </div>
-
         </div>
-
         <br>
-
-
         <div style="margin-left: 800px;">
-          <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;">Aceptar</button>
-          <button type="reset" class="btn btn-outline-primary">Cancelar</button>
+          <button type="reset" class="btn btn-danger me-3" (click)="backPage()">Volver</button>
+          <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;" (click)="saveHomePage()">Guardar</button>
         </div>
-
-
-      </form>
 
     </div>
   </div>
