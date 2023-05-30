@@ -50,18 +50,20 @@ export class ModifyRoomComponent {
     const input = event.target as HTMLInputElement;
     const file = input.files ? input.files[0] : null;
 
-    if (file) {
+    this.toBase64(file).then((value: any) => {
+      this.imagen = value;
+    });
+
+
+  }
+
+  toBase64(file: any) {
+    return new Promise((resolve, reject) => {
       const reader = new FileReader();
-
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        this.imagen = base64String;
-        // Aquí puedes guardar 'base64String' en tu base de datos o realizar cualquier otra operación necesaria
-      };
-
       reader.readAsDataURL(file);
-      // Inicia la lectura del archivo y activa la función 'onloadend' cuando la lectura se complete
-    }
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 
 
