@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FacilitiesServiceService } from '../../services/facilities-service/facilities-service.service';
 import { ActivatedRoute } from '@angular/router';
@@ -44,7 +43,6 @@ export class ConsultRoomsComponent {
         this.roomId,
       ).subscribe(result => {
         this.rooms = result;
-        console.log(result)
       })
     } else {
       Swal.fire({
@@ -66,8 +64,9 @@ export class ConsultRoomsComponent {
   updateDateEnd(event: any) {
     this.endDate = event.target.value;
   }
-  updateId(event: any) {
-    this.roomId = event.target.value;
+  updateId(event: Event) {
+    const selectedValue = Number((event.target as HTMLSelectElement).value);
+    this.roomId = selectedValue;
   }
-
+  
 }

@@ -14,7 +14,7 @@ export class RoomsTypeServiceService {
   apiRoomsURL = '/Entity_Habitacion/GetEstadoHabitacion';
   apiRoomTypeByIdURL = '/Entity_TipoHabitacion/GetRoomTypesById';
   apiRoomTypeUpdateURL = '/Entity_TipoHabitacion/PutRoomTypesById';
-  apiRoomGetAvailabilityURL = ' ';
+  apiRoomGetAvailabilityURL = '/Entity_Habitacion/GetAvaibilityRoom';
   getRoomsType(): Observable<any> {
     return this.http.get(environment.url + this.apiRoomsTypesURL);
   }
