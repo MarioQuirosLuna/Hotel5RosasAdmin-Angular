@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,8 +18,8 @@ export class CreateSeasonComponent {
   constructor(private router: Router, private route: ActivatedRoute, private serviceSeason: SeasonsServiceService) {
     this.seasonForm = new FormGroup({
       nameSeason: new FormControl(''),
-      seasonBeginDate: new FormControl(''),
-      seasonEndDate: new FormControl('')
+      seasonBeginDate: new FormControl('', Validators.required),
+      seasonEndDate: new FormControl('', Validators.required)
     });
   }
 
@@ -29,30 +29,83 @@ export class CreateSeasonComponent {
     });
   }
 
-  addSeason(){
-    //Call Service to Add Season
-    this.serviceSeason.createSeason({
-      Nombre: this.seasonForm.value.nameSeason,
-      Fecha_Inicio: this.seasonForm.value.seasonBeginDate,
-      Fecha_Fin: this.seasonForm.value.seasonEndDate,
-    }).subscribe(() => {
+  DatesValidation() {
+
+    let originalDate = new Date();
+
+    let year = originalDate.getFullYear();
+    let month = ('0' + (originalDate.getMonth() + 1)).slice(-2);
+    let day = ('0' + originalDate.getDate()).slice(-2);
+    let hours = ('0' + originalDate.getHours()).slice(-2);
+    let minutes = ('0' + originalDate.getMinutes()).slice(-2);
+
+    let formatedDate = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+
+    if (!this.seasonForm.value.seasonBeginDate || !this.seasonForm.value.seasonEndDate || !this.seasonForm.value.nameSeason) {
       Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "El registro se creó correctamente!",
-        showConfirmButton: false,
-        timer: 1800,
+        icon: 'warning',
+        title: 'Error',
+        text: 'Por favor, no deje campos vacíos'
       });
-      const navigationExtras = {
-        queryParams: { username: this.username },
-      };
-      this.router.navigate(['/manage-season'], navigationExtras).then(() => {
-        window.history.replaceState(
-          {},
-          document.title,
-          this.router.url.split('?')[0]
-        );
+      return false;
+    }
+
+    if (this.seasonForm.value.seasonBeginDate < formatedDate || this.seasonForm.value.seasonEndDate < formatedDate) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'Las fechas deben ser mayores al día de hoy'
       });
-    })
+      return false;
+    }
+
+    if (this.seasonForm.value.seasonBeginDate >= this.seasonForm.value.seasonEndDate) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'La fecha de llegada debe ser menor a la fecha de salida'
+      });
+
+      return false;
+    }
+
+    return true;
+  }
+
+  addSeason() {
+    //Call Service to Add Season
+    if (this.DatesValidation()) {
+      this.serviceSeason.createSeason({
+        Nombre: this.seasonForm.value.nameSeason,
+        Fecha_Inicio: this.seasonForm.value.seasonBeginDate,
+        Fecha_Fin: this.seasonForm.value.seasonEndDate,
+      }).subscribe(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "El registro se creó correctamente!",
+          showConfirmButton: false,
+          timer: 1800,
+        });
+        const navigationExtras = {
+          queryParams: { username: this.username },
+        };
+        this.router.navigate(['/manage-season'], navigationExtras).then(() => {
+          window.history.replaceState(
+            {},
+            document.title,
+            this.router.url.split('?')[0]
+          );
+        });
+      }, (error) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error al crear',
+          text: 'Por favor, intenta nuevamente más tarde.',
+          showConfirmButton: true,
+        });
+      })
+    }
   }
 }

@@ -77,6 +77,14 @@ export class ModifyHomePageComponent {
             this.route.url.split('?')[0]
           );
         });
+      }, (error) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error al modificar',
+          text: 'Por favor, intenta nuevamente más tarde.',
+          showConfirmButton: true,
+        });
       });
   }
 

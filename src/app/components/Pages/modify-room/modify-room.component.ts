@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modify-room',
@@ -92,6 +93,13 @@ export class ModifyRoomComponent {
       tarifa: this.tarifa,
       imagen: this.imagen
     }).subscribe(() => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'El registro se modificó correctamente!',
+        showConfirmButton: false,
+        timer: 1800,
+      });
       const navigationExtras = {
         queryParams: { username: this.username },
       };
@@ -102,10 +110,18 @@ export class ModifyRoomComponent {
           this.router.url.split('?')[0]
         );
       });
+    }, (error) => {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error al modificar',
+        text: 'Por favor, intenta nuevamente más tarde.',
+        showConfirmButton: true,
+      });
     })
   }
 
-  backManageRooms(){
+  backManageRooms() {
     const navigationExtras = {
       queryParams: { username: this.username },
     };

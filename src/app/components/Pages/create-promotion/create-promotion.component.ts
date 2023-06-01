@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PromotionServiceService } from '../../services/promotion-service/promotion-service.service';
 import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
@@ -20,12 +20,12 @@ export class CreatePromotionComponent {
   roomsTypes: any = [];
   seasonsList: any = [];
   constructor(private router: Router, private route: ActivatedRoute, private servicePromotion: PromotionServiceService,
-    private serviceRoom: RoomsTypeServiceService,private serviceSeason: SeasonsServiceService
-    ) {
+    private serviceRoom: RoomsTypeServiceService, private serviceSeason: SeasonsServiceService
+  ) {
     this.seasonForm = new FormGroup({
       nameSeason: new FormControl(''),
       typeHabitacion: new FormControl(''),
-      promotion: new FormControl('')
+      promotion: new FormControl('', [Validators.required])
     });
   }
 
@@ -43,30 +43,65 @@ export class CreatePromotionComponent {
     });
   }
 
-  addSeason(){
-    //Call Service to Add Season
-    this.servicePromotion.postCreatePromotion({
-      FK_Temporada: this.seasonForm.value.nameSeason,
-      FK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
-      Oferta: this.seasonForm.value.promotion,
-    }).subscribe(() => {
+  Validation() {
+
+    if (!this.seasonForm.value.nameSeason || !this.seasonForm.value.typeHabitacion || !this.seasonForm.value.promotion) {
       Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "El registro se creó correctamente!",
-        showConfirmButton: false,
-        timer: 1800,
+        icon: 'warning',
+        title: 'Error',
+        text: 'Por favor, no deje campos vacíos'
       });
-      const navigationExtras = {
-        queryParams: { username: this.username },
-      };
-      this.router.navigate(['/manage-promotions'], navigationExtras).then(() => {
-        window.history.replaceState(
-          {},
-          document.title,
-          this.router.url.split('?')[0]
-        );
+
+      return false;
+    }
+
+    if (this.seasonForm.value.promotion > 100 || this.seasonForm.value.promotion < 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'La promocion debe ser entre 0 y 100 porciento'
       });
-    })
+
+      return false;
+    }
+
+    return true;
+  }
+
+  addSeason() {
+    //Call Service to Add Season
+    if (this.Validation()) {
+      this.servicePromotion.postCreatePromotion({
+        FK_Temporada: this.seasonForm.value.nameSeason,
+        FK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
+        Oferta: this.seasonForm.value.promotion,
+      }).subscribe(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "El registro se creó correctamente!",
+          showConfirmButton: false,
+          timer: 1800,
+        });
+        const navigationExtras = {
+          queryParams: { username: this.username },
+        };
+        this.router.navigate(['/manage-promotions'], navigationExtras).then(() => {
+          window.history.replaceState(
+            {},
+            document.title,
+            this.router.url.split('?')[0]
+          );
+        });
+      }, (error) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error al crear',
+          text: 'Por favor, intenta nuevamente más tarde.',
+          showConfirmButton: true,
+        });
+      })
+    }
   }
 }

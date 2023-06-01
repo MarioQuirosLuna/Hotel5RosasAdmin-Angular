@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FacilitiesServiceService } from '../../services/facilities-service/facilities-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
@@ -32,24 +33,69 @@ export class ConsultRoomsComponent {
     });
   }
 
-  showTable() {
-    if (this.startDate != '' && this.endDate != '' && this.roomId != 0) {
-      this.tablaVisible = true;
-      this.resultText = ' - Habitaciones Libres'
+  DatesValidation() {
 
-      this.serviceRoom.apiRoomGetAvailability(
-        this.startDate,
-        this.endDate,
-        this.roomId,
-      ).subscribe(result => {
-        this.rooms = result;
-      })
-    } else {
+    let originalDate = new Date();
+
+    let year = originalDate.getFullYear();
+    let month = ('0' + (originalDate.getMonth() + 1)).slice(-2);
+    let day = ('0' + originalDate.getDate()).slice(-2);
+    let hours = ('0' + originalDate.getHours()).slice(-2);
+    let minutes = ('0' + originalDate.getMinutes()).slice(-2);
+
+    let formatedDate = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+
+    if (!this.startDate || !this.endDate || !this.roomId) {
       Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Error',
-        text: 'Faltan datos!'
+        text: 'Por favor, no deje campos vacíos'
       });
+      return false;
+    }
+
+    if (this.startDate < formatedDate || this.endDate < formatedDate) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'Las fechas deben ser mayores al día de hoy'
+      });
+      return false;
+    }
+
+    if (this.startDate >= this.endDate) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'La fecha de llegada debe ser menor a la fecha de salida'
+      });
+
+      return false;
+    }
+
+    return true;
+  }
+
+  showTable() {
+    if (this.DatesValidation()) {
+      if (this.startDate != '' && this.endDate != '' && this.roomId != 0) {
+        this.tablaVisible = true;
+        this.resultText = ' - Habitaciones Libres'
+
+        this.serviceRoom.apiRoomGetAvailability(
+          this.startDate,
+          this.endDate,
+          this.roomId,
+        ).subscribe(result => {
+          this.rooms = result;
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Por favor, no deje campos vacíos'
+        });
+      }
     }
   }
 
@@ -68,5 +114,5 @@ export class ConsultRoomsComponent {
     const selectedValue = Number((event.target as HTMLSelectElement).value);
     this.roomId = selectedValue;
   }
-  
+
 }

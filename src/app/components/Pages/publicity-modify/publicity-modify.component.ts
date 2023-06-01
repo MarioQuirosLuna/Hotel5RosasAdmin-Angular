@@ -66,33 +66,57 @@ export class PublicityModifyComponent {
     }
   }
 
-  savePublicity() {
-    this.service
-      .putPublicity({
-        PK_Publicidad : this._id,
-        Nombre: this.objectPage.name,
-        Descripcion: this.objectPage.url,
-        Imagen: this.objectPage.img,
-      })
-      .subscribe(() => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'El registro se modificó correctamente!',
-          showConfirmButton: false,
-          timer: 1800,
-        });
-        const navigationExtras = {
-          queryParams: { username: this.username },
-        };
-        this.router.navigate(['/publicity-view'], navigationExtras).then(() => {
-          window.history.replaceState(
-            {},
-            document.title,
-            this.router.url.split('?')[0]
-          );
-        });
+  Validation() {
+
+    if (!this.objectPage.name || !this.objectPage.url || !this.objectPage.img) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'Por favor, no deje campos vacíos'
       });
+      return false;
+    }
+
+    return true;
+  }
+
+  savePublicity() {
+    if (this.Validation()) {
+      this.service
+        .putPublicity({
+          PK_Publicidad: this._id,
+          Nombre: this.objectPage.name,
+          Descripcion: this.objectPage.url,
+          Imagen: this.objectPage.img,
+        })
+        .subscribe(() => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'El registro se modificó correctamente!',
+            showConfirmButton: false,
+            timer: 1800,
+          });
+          const navigationExtras = {
+            queryParams: { username: this.username },
+          };
+          this.router.navigate(['/publicity-view'], navigationExtras).then(() => {
+            window.history.replaceState(
+              {},
+              document.title,
+              this.router.url.split('?')[0]
+            );
+          });
+        }, (error) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al modificar',
+            text: 'Por favor, intenta nuevamente más tarde.',
+            showConfirmButton: true,
+          });
+        });
+    }
   }
 
   onFileSelected(event: Event): void {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
@@ -24,7 +24,7 @@ export class ModifyPromotionComponent {
   typeRoom: String = '';
   promotionSeasonID: Number = 0;
   typeRoomID: Number = 0;
-  promotionId : Number = 0;
+  promotionId: Number = 0;
 
   constructor(
     private router: Router,
@@ -42,7 +42,7 @@ export class ModifyPromotionComponent {
     this.seasonForm = new FormGroup({
       nameSeason: new FormControl(''),
       typeHabitacion: new FormControl(''),
-      promotion: new FormControl(''),
+      promotion: new FormControl('', [Validators.required]),
     });
   }
 
@@ -84,38 +84,73 @@ export class ModifyPromotionComponent {
     });
   }
 
-  updateSeason() {
-    this.route.queryParams.subscribe((params) => {
-      this.username = params['username'];
-      this.promotionSeason = params['nameSeason'];
-      this.typeRoom = params['roomType'];
-    });
-    //Call Service to Add Season
-    this.servicePromotion
-      .putPromotion({
-        pK_Oferta_Temporada: this.promotionId,
-        FK_Temporada: this.seasonForm.value.nameSeason,
-        FK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
-        Oferta: this.seasonForm.value.promotion,
-      }).subscribe(() => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "El registro se modificó correctamente!",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-        const navigationExtras = {
-          queryParams: { username: this.username },
-        };
-        this.router.navigate(['/manage-promotions'], navigationExtras).then(() => {
-          window.history.replaceState(
-            {},
-            document.title,
-            this.router.url.split('?')[0]
-          );
-        });
+  Validation() {
+
+    if (!this.seasonForm.value.nameSeason || !this.seasonForm.value.typeHabitacion || !this.seasonForm.value.promotion) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'Por favor, no deje campos vacíos'
       });
+
+      return false;
+    }
+
+    if (this.seasonForm.value.promotion > 100 || this.seasonForm.value.promotion < 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'La promocion debe ser entre 0 y 100 porciento'
+      });
+
+      return false;
+    }
+
+    return true;
+  }
+
+  updateSeason() {
+    if (this.Validation()) {
+      this.route.queryParams.subscribe((params) => {
+        this.username = params['username'];
+        this.promotionSeason = params['nameSeason'];
+        this.typeRoom = params['roomType'];
+      });
+      //Call Service to Add Season
+      this.servicePromotion
+        .putPromotion({
+          pK_Oferta_Temporada: this.promotionId,
+          FK_Temporada: this.seasonForm.value.nameSeason,
+          FK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
+          Oferta: this.seasonForm.value.promotion,
+        }).subscribe(() => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "El registro se modificó correctamente!",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+          const navigationExtras = {
+            queryParams: { username: this.username },
+          };
+          this.router.navigate(['/manage-promotions'], navigationExtras).then(() => {
+            window.history.replaceState(
+              {},
+              document.title,
+              this.router.url.split('?')[0]
+            );
+          });
+        }, (error) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al modificar',
+            text: 'Por favor, intenta nuevamente más tarde.',
+            showConfirmButton: true,
+          });
+        });
+    }
   }
 
   backPage() {

@@ -50,28 +50,36 @@ export class ModifyContactUsComponent {
 
   saveAboutUsPage() {
     this.service
-    .putContactUs({
-      Informacion: this.objectPage.information,
-    })
-    .subscribe(() => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'El registro se modificó correctamente!',
-        showConfirmButton: false,
-        timer: 1800,
+      .putContactUs({
+        Informacion: this.objectPage.information,
+      })
+      .subscribe(() => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'El registro se modificó correctamente!',
+          showConfirmButton: false,
+          timer: 1800,
+        });
+        const navigationExtras = {
+          queryParams: { username: this.username },
+        };
+        this.router.navigate(['/modify-page'], navigationExtras).then(() => {
+          window.history.replaceState(
+            {},
+            document.title,
+            this.router.url.split('?')[0]
+          );
+        });
+      }, (error) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Error al modificar',
+          text: 'Por favor, intenta nuevamente más tarde.',
+          showConfirmButton: true,
+        });
       });
-      const navigationExtras = {
-        queryParams: { username: this.username },
-      };
-      this.router.navigate(['/modify-page'], navigationExtras).then(() => {
-        window.history.replaceState(
-          {},
-          document.title,
-          this.router.url.split('?')[0]
-        );
-      });
-    });
   }
 
   backPage() {
