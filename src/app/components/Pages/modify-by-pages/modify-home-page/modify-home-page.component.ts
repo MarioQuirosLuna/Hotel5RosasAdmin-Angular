@@ -22,7 +22,6 @@ export class ModifyHomePageComponent {
     this.service.getHomeInfo().subscribe((hotelInfo) => {
       this.imageHotel = hotelInfo.imagen;
       this.information = hotelInfo.informacion.replace(/\s/g, ' ');
-      console.log(hotelInfo);
     });
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];

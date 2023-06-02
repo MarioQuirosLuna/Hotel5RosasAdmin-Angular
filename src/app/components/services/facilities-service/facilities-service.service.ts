@@ -27,7 +27,6 @@ export class FacilitiesServiceService {
 
   apiURLModifyFacility = '/Entity_Pagina/UpdateEase/';
   putFacility(object : any): Observable<any> {
-    console.log(object)
     return this.http.put(environment.url + this.apiURLModifyFacility, object);
   }
 

@@ -21,7 +21,6 @@ export class HomeServiceService {
 
   apiURLModifyHome = '/Entity_Pagina/UpdateHome/';
   putHome(home : any): Observable<any> {
-    console.log(home)
     return this.http.put(environment.url + this.apiURLModifyHome, home);
   }
 

@@ -20,7 +20,6 @@ export class ModifyFacilitiesPageComponent {
   ) {
     this.service.getHotelFacilities().subscribe((facilities) => {
       this.facilities = facilities;
-      console.log(this.facilities);
     });
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];

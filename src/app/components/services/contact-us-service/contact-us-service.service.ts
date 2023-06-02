@@ -16,7 +16,6 @@ export class ContactUsServiceService {
 
   apiURLModifyContactUs = '/Entity_Pagina/UpdateInformationContacUs';
   putContactUs(object : any): Observable<any> {
-    console.log(object)
     return this.http.put(environment.url + this.apiURLModifyContactUs, object);
   }
 }

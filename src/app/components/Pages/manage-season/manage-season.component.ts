@@ -24,7 +24,6 @@ export class ManageSeasonComponent {
     });
     this.serviceSeason.getSeasons().subscribe((seasons) => {
       this.seasons = seasons;
-      console.log(this.seasons);
     });
   }
 

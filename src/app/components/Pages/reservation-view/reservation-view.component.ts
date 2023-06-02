@@ -42,7 +42,6 @@ export class ReservationViewComponent {
       this._id = params['id'];
     });
     this.service.getIdReservation(this._id).subscribe((publicity) => {
-      console.log(publicity);
       this._id = publicity.pK_Publicidad;
       this.objectPage.pK_Reserva = publicity.pK_Reserva;
       this.objectPage.tipo_Habitacion = publicity.tipo_Habitacion;

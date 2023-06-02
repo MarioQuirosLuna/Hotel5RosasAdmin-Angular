@@ -42,7 +42,6 @@ export class PublicityModifyComponent {
       this._id = params['id'];
     });
     this.service.getPublicityId(this._id).subscribe((publicity) => {
-      console.log(publicity)
       this._id = publicity.pK_Publicidad;
       this.objectPage.name = publicity.nombre;
       this.objectPage.url = publicity.descripcion;

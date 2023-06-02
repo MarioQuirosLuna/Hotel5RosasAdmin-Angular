@@ -72,7 +72,6 @@ export class ModifyPromotionComponent {
       }
 
       this.servicePromotion.getPromotionId(this._id).subscribe((promotion) => {
-        console.log(promotion.pK_Oferta_Temporada)
         this.promotionId = promotion.pK_Oferta_Temporada;
         this.seasonForm = new FormGroup({
           nameSeason: new FormControl(this.promotionSeasonID),

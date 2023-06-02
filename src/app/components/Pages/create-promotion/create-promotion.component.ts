@@ -35,11 +35,9 @@ export class CreatePromotionComponent {
     });
     this.serviceSeason.getSeasons().subscribe((seasons) => {
       this.seasonsList = seasons;
-      console.log(this.seasonsList);
     });
     this.serviceRoom.getRoomsType().subscribe((roomsTypes) => {
       this.roomsTypes = roomsTypes;
-      console.log(this.roomsTypes);
     });
   }
 

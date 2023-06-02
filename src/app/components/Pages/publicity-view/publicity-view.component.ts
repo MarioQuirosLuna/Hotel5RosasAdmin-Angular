@@ -17,7 +17,7 @@ export class PublicityViewComponent {
     private service: PublicityServiceService,
     private route: Router,
     private router: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.router.queryParams.subscribe((params) => {

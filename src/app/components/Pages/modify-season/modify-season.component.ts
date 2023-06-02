@@ -35,7 +35,6 @@ export class ModifySeasonComponent {
       this._id = params['id'];
     });
     this.serviceSeason.getSeasonsId(this._id).subscribe((seasons) => {
-      console.log(seasons);
       this._id = seasons.pK_Temporada;
       this.seasonForm = new FormGroup({
         nameSeason: new FormControl(seasons.nombre),

@@ -22,7 +22,6 @@ export class AboutServiceService {
 
   apiURLModifyAboutUs = '/Entity_Pagina/UpdateAboutUs/';
   putAboutUs(object : any): Observable<any> {
-    console.log(object)
     return this.http.put(environment.url + this.apiURLModifyAboutUs, object);
   }
 }

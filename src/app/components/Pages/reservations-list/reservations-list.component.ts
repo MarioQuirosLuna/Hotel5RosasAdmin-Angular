@@ -19,7 +19,6 @@ export class ReservationsListComponent implements OnInit {
   ) {
     this.service.getReservations().subscribe((reservations_list) => {
       this.reservations_list = reservations_list;
-      console.log(reservations_list);
     });
   }
 
@@ -29,7 +28,6 @@ export class ReservationsListComponent implements OnInit {
     });
     this.service.getReservations().subscribe((reservations_list) => {
       this.reservations_list = reservations_list;
-      console.log(reservations_list);
     });
   }
 

@@ -20,7 +20,6 @@ export class ModifyUbicationPageComponent {
   ) {
     this.service.getUbication().subscribe((ubication) => {
       this.ubication = ubication[0].informacion;
-      console.log(ubication);
     });
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];
