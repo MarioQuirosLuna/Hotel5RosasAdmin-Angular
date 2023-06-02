@@ -40,10 +40,8 @@ export class CreateSeasonComponent {
     let year = originalDate.getFullYear();
     let month = ('0' + (originalDate.getMonth() + 1)).slice(-2);
     let day = ('0' + originalDate.getDate()).slice(-2);
-    let hours = ('0' + originalDate.getHours()).slice(-2);
-    let minutes = ('0' + originalDate.getMinutes()).slice(-2);
 
-    let formatedDate = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+    let formatedDate = year + '-' + month + '-' + day;
 
     if (!this.seasonForm.value.seasonBeginDate || !this.seasonForm.value.seasonEndDate || !this.seasonForm.value.nameSeason) {
       Swal.fire({
@@ -58,7 +56,7 @@ export class CreateSeasonComponent {
       Swal.fire({
         icon: 'warning',
         title: 'Error',
-        text: 'Las fechas deben ser mayores al día de hoy'
+        text: 'Las fechas no deben ser menores al día de hoy'
       });
       return false;
     }
