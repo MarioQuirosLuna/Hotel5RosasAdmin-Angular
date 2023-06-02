@@ -17,8 +17,8 @@
             <th scope="col">Apellidos</th>
             <th scope="col">Email</th>
             <th scope="col">Tarjeta</th>
-            <th scope="col">Fecha Salida</th>
             <th scope="col">Fecha Llegada</th>
+            <th scope="col">Fecha Salida</th>
             <th scope="col">Costo Total</th>
             <th scope="col">Tipo</th>
             <th scope="col">Ver</th>
@@ -33,8 +33,8 @@
             <td>{{reservation.apellidos_Cliente}}</td>
             <td>{{reservation.correo}}</td>
             <td>{{reservation.numero_Tarjeta}}</td>
-            <td>{{reservation.fecha_Fin | date : 'YYYY-MM-dd'}}</td>
             <td>{{reservation.fecha_Inicio | date : 'YYYY-MM-dd'}}</td>
+            <td>{{reservation.fecha_Fin | date : 'YYYY-MM-dd'}}</td>
             <td>{{reservation.tarifa_Total}}</td>
             <td>{{reservation.tipo_Habitacion}}</td>
             <td><button type="reset" class="btn btn-primary" (click)="viewReservation(reservation.pK_Reserva)">Ver</button></td>
