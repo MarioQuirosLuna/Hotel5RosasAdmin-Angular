@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomeServiceService } from 'src/app/components/services/home-service/home-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/components/Util/authService';
 
 @Component({
   selector: 'app-modify-home-page',
@@ -17,7 +18,8 @@ export class ModifyHomePageComponent {
   constructor(
     private service: HomeServiceService,
     private router: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private authService: AuthService
   ) {
     this.service.getHomeInfo().subscribe((hotelInfo) => {
       this.imageHotel = hotelInfo.imagen;
@@ -26,6 +28,12 @@ export class ModifyHomePageComponent {
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+  }
+
+  ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.route.navigate(['']);
+    }
   }
 
   onFileSelected(event: Event): void {

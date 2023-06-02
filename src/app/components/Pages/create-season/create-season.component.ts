@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-create-season',
@@ -15,7 +16,7 @@ export class CreateSeasonComponent {
 
   seasonForm: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute, private serviceSeason: SeasonsServiceService) {
+  constructor(private router: Router, private route: ActivatedRoute, private serviceSeason: SeasonsServiceService, private authService: AuthService) {
     this.seasonForm = new FormGroup({
       nameSeason: new FormControl(''),
       seasonBeginDate: new FormControl('', Validators.required),
@@ -27,6 +28,9 @@ export class CreateSeasonComponent {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   DatesValidation() {

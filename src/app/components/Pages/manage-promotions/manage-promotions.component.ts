@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { PromotionServiceService } from '../../services/promotion-service/promotion-service.service';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-manage-promotions',
@@ -15,13 +16,17 @@ export class ManagePromotionsComponent {
   constructor(
     private route: ActivatedRoute,
     private servicePromotion: PromotionServiceService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
     this.servicePromotion.getPromotion().subscribe((seasons) => {
       this.promotions = seasons;
     });

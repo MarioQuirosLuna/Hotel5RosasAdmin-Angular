@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationServiceService } from '../../services/reservation-service/reservation-service.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-reservation-view',
@@ -30,12 +31,16 @@ export class ReservationViewComponent {
       this.username = params['username'];
       this._id = params['id'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   constructor(
     private service: ReservationServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
@@ -67,7 +72,7 @@ export class ReservationViewComponent {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.deleteReservation(id).subscribe((res) => {});
+        this.service.deleteReservation(id).subscribe((res) => { });
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -91,5 +96,5 @@ export class ReservationViewComponent {
     });
   }
 
-  downloadReservation(id: Number) {}
+  downloadReservation(id: Number) { }
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Util/authService';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class ConsultRoomsComponent {
 
   username: String = "";
 
-  constructor(private service: FacilitiesServiceService, private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService) {
+  constructor(private service: FacilitiesServiceService, private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService, private authService: AuthService) {
     this.myForm = new FormGroup({
       roomType: new FormControl()
     });
@@ -37,6 +38,12 @@ export class ConsultRoomsComponent {
     this.route.queryParams.subscribe(params => {
       this.username = params['username'];
     });
+  }
+
+  ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   DatesValidation() {

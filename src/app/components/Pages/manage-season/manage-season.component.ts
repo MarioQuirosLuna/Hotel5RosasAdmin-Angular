@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-manage-season',
@@ -15,13 +16,17 @@ export class ManageSeasonComponent {
   constructor(
     private route: ActivatedRoute,
     private serviceSeason: SeasonsServiceService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
     this.serviceSeason.getSeasons().subscribe((seasons) => {
       this.seasons = seasons;
     });

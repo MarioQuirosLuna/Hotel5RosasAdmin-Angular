@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
 import { PromotionServiceService } from '../../services/promotion-service/promotion-service.service';
 import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-modify-promotion',
@@ -31,7 +32,8 @@ export class ModifyPromotionComponent {
     private route: ActivatedRoute,
     private servicePromotion: PromotionServiceService,
     private serviceRoom: RoomsTypeServiceService,
-    private serviceSeason: SeasonsServiceService
+    private serviceSeason: SeasonsServiceService,
+    private authService: AuthService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
@@ -47,6 +49,9 @@ export class ModifyPromotionComponent {
   }
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
       this._id = params['id'];

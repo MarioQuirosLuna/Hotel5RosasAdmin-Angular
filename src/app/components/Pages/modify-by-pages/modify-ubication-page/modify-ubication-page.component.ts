@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UbicationServiceService } from 'src/app/components/services/ubication-service/ubication-service.service';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/components/Util/authService';
 
 @Component({
   selector: 'app-modify-ubication-page',
@@ -16,7 +17,8 @@ export class ModifyUbicationPageComponent {
   constructor(
     private service: UbicationServiceService,
     private router: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private authService: AuthService
   ) {
     this.service.getUbication().subscribe((ubication) => {
       this.ubication = ubication[0].informacion;
@@ -24,6 +26,12 @@ export class ModifyUbicationPageComponent {
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+  }
+
+  ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.route.navigate(['']);
+    }
   }
 
   updateInformation(nuevoValor: Event) {

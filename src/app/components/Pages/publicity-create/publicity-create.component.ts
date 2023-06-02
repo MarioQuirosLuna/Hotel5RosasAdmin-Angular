@@ -3,6 +3,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { PublicityServiceService } from '../../services/publicity-service/publicity-service.service';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-publicity-create',
@@ -16,6 +17,9 @@ export class PublicityCreateComponent {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   objectPage: any = {
@@ -27,12 +31,14 @@ export class PublicityCreateComponent {
   constructor(
     private service: PublicityServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
   }
+
 
   updateName(nuevoValor: Event) {
     if (nuevoValor.target) {

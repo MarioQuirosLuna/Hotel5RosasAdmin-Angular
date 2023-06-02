@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../Util/authService';
 @Component({
   selector: 'app-modify-pages',
   templateUrl: './modify-pages.component.html',
@@ -8,17 +9,20 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 export class ModifyPagesComponent {
   username: String = "";
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
-  routerHome(){
+  routerHome() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/modify-home'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -29,9 +33,9 @@ export class ModifyPagesComponent {
     });
   }
 
-  routerAboutUs(){
+  routerAboutUs() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/modify-about-us'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -42,9 +46,9 @@ export class ModifyPagesComponent {
     });
   }
 
-  routerFacility(){
+  routerFacility() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/modify-facility'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -55,9 +59,9 @@ export class ModifyPagesComponent {
     });
   }
 
-  routerUbication(){
+  routerUbication() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/modify-ubication'], navigationExtras).then(() => {
       window.history.replaceState(
@@ -68,9 +72,9 @@ export class ModifyPagesComponent {
     });
   }
 
-  routerContactUs(){
+  routerContactUs() {
     const navigationExtras = {
-      queryParams: { username : this.username },
+      queryParams: { username: this.username },
     };
     this.router.navigate(['/modify-contact-us'], navigationExtras).then(() => {
       window.history.replaceState(

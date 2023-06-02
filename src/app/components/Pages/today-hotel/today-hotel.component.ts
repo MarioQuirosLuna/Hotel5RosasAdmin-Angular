@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomeServiceService } from '../../services/home-service/home-service.service';
 
 import * as jspdf from 'jspdf';
 import 'jspdf-autotable';
 import { UserOptions } from 'jspdf-autotable';
+import { AuthService } from '../../Util/authService';
 
 interface jsPDFWithPlugin extends jspdf.jsPDF {
   autoTable: (options: UserOptions) => jspdf.jsPDF;
@@ -21,7 +22,7 @@ export class TodayHotelComponent {
 
   username: String = "";
 
-  constructor(private route: ActivatedRoute, private service: HomeServiceService) {
+  constructor(private route: ActivatedRoute, private service: HomeServiceService, private authService: AuthService, private router: Router) {
     this.service.getHotelToday().subscribe(rooms => {
       this.rooms = rooms;
     });
@@ -31,6 +32,9 @@ export class TodayHotelComponent {
     this.route.queryParams.subscribe(params => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   myDate = new Date();

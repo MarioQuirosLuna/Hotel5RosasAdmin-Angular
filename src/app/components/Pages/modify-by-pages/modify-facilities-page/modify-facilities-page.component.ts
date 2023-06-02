@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FacilitiesServiceService } from 'src/app/components/services/facilities-service/facilities-service.service';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/components/Util/authService';
 
 @Component({
   selector: 'app-modify-facilities-page',
@@ -16,7 +17,8 @@ export class ModifyFacilitiesPageComponent {
   constructor(
     private service: FacilitiesServiceService,
     private route: Router,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.service.getHotelFacilities().subscribe((facilities) => {
       this.facilities = facilities;
@@ -24,6 +26,12 @@ export class ModifyFacilitiesPageComponent {
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+  }
+
+  ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.route.navigate(['']);
+    }
   }
 
   deleteFacility() {

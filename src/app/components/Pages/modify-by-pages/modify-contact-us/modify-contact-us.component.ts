@@ -3,6 +3,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ContactUsServiceService } from 'src/app/components/services/contact-us-service/contact-us-service.service';
+import { AuthService } from 'src/app/components/Util/authService';
 
 @Component({
   selector: 'app-modify-contact-us',
@@ -16,6 +17,9 @@ export class ModifyContactUsComponent {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   objectPage: any = {
@@ -27,7 +31,8 @@ export class ModifyContactUsComponent {
   constructor(
     private service: ContactUsServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.service.getContactUs().subscribe((hotelInfo) => {
       this.objectPage.name = hotelInfo.nombre;

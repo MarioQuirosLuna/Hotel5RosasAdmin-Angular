@@ -3,6 +3,7 @@ import { AboutServiceService } from 'src/app/components/services/about-service/a
 import { Clipboard } from '@angular/cdk/clipboard';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/components/Util/authService';
 
 @Component({
   selector: 'app-modify-about-us-page',
@@ -16,6 +17,9 @@ export class ModifyAboutUsPageComponent {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   objectPage: any = {
@@ -27,7 +31,8 @@ export class ModifyAboutUsPageComponent {
   constructor(
     private service: AboutServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.service.getAboutUsInfo().subscribe((hotelInfo) => {
       this.objectPage.name = hotelInfo.nombre;

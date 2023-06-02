@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationServiceService } from '../../services/reservation-service/reservation-service.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Util/authService';
 @Component({
   selector: 'app-reservations-list',
   templateUrl: './reservations-list.component.html',
@@ -15,7 +16,8 @@ export class ReservationsListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: ReservationServiceService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.service.getReservations().subscribe((reservations_list) => {
       this.reservations_list = reservations_list;
@@ -26,6 +28,9 @@ export class ReservationsListComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
     this.service.getReservations().subscribe((reservations_list) => {
       this.reservations_list = reservations_list;
     });
@@ -55,7 +60,7 @@ export class ReservationsListComponent implements OnInit {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.deleteReservation(id).subscribe((res) => {});
+        this.service.deleteReservation(id).subscribe((res) => { });
         Swal.fire({
           position: 'center',
           icon: 'success',

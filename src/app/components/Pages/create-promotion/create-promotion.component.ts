@@ -5,6 +5,7 @@ import { PromotionServiceService } from '../../services/promotion-service/promot
 import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
 import { SeasonsServiceService } from '../../services/seasons-service/seasons-service.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-create-promotion',
@@ -20,7 +21,7 @@ export class CreatePromotionComponent {
   roomsTypes: any = [];
   seasonsList: any = [];
   constructor(private router: Router, private route: ActivatedRoute, private servicePromotion: PromotionServiceService,
-    private serviceRoom: RoomsTypeServiceService, private serviceSeason: SeasonsServiceService
+    private serviceRoom: RoomsTypeServiceService, private serviceSeason: SeasonsServiceService, private authService: AuthService
   ) {
     this.seasonForm = new FormGroup({
       nameSeason: new FormControl(''),
@@ -30,6 +31,9 @@ export class CreatePromotionComponent {
   }
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });

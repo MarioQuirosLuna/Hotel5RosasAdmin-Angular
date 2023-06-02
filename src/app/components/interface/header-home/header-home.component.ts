@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
+import { AuthService } from '../../Util/authService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-home',
@@ -11,12 +13,17 @@ export class HeaderHomeComponent {
 
   hotelName = 'Hotel 5 Rosas';
 
-  constructor(){
+  constructor(private authService: AuthService, private router: Router) {
 
   }
 
-  OnInit(){
+  OnInit() {
 
+  }
+
+  logOut() {
+    this.authService.logout();
+    // this.router.navigate([''])
   }
 
 }

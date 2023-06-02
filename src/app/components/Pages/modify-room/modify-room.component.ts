@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Util/authService';
 
 @Component({
   selector: 'app-modify-room',
@@ -23,7 +24,7 @@ export class ModifyRoomComponent {
   descripcion: string = "";
   nombre: string = "";
 
-  constructor(private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService) {
+  constructor(private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService, private authService: AuthService) {
     const navigationExtras = {
       queryParams: { username: this.username, id: this._id },
     };
@@ -33,6 +34,9 @@ export class ModifyRoomComponent {
       this.username = params['username'];
       this._id = params['id'];
     });
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
     //Esto hay que obtenerlo de base de datos con el id del tipo de habitacion
     this.serviceRoom.getRoomTypeById(this._id).subscribe(roomType => {
       this.roomType = roomType;
