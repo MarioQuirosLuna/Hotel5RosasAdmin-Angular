@@ -7,31 +7,33 @@
   <div class="information">
     <div class="overflow-auto">
       <h2>Consultar Disponibilidad de Habitaciones {{resultText}}</h2>
+      <form [formGroup]="myForm">
+        <table class="table">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input class="form-control" type="date" value="{{startDate}}" (change)="updateDateStart($event)" />
+              </td>
+              <td><input class="form-control" type="date" value="{{endDate}}" (change)="updateDateEnd($event)" />
+              </td>
+              <td>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-lg">Tipo de Habitación</span>
 
-      <table class="table">
-        <thead>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input class="form-control" type="date" value="{{startDate}}" (change)="updateDateStart($event)" />
-            </td>
-            <td><input class="form-control" type="date" value="{{endDate}}" (change)="updateDateEnd($event)" />
-            </td>
-            <td>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-lg">Tipo de Habitación</span>
-                <select class="form-select form-select-sm" formControlName="roomType" (change)="updateId($event)">
-                  <option *ngFor="let roomType of roomTypes" value="{{roomType.pK_Tipo_Habitacion}}">
-                    {{roomType.nombre }}</option>
-                </select>
-              </div>
-            </td>
-            <td><button class="btn btn-outline-primary" (click)="showTable()">Consultar</button></td>
-            <td><button class="btn btn-outline-primary" (click)="cleanDisplay()">Limpiar</button></td>
-          </tr>
-        </tbody>
-      </table>
+                  <select class="form-select form-select-sm" formControlName="roomType" (change)="updateId($event)">
+                    <option *ngFor="let roomType of roomTypes" value="{{roomType.pK_Tipo_Habitacion}}">
+                      {{roomType.nombre }}</option>
+                  </select>
 
+                </div>
+              </td>
+              <td><button class="btn btn-outline-primary" (click)="showTable()">Consultar</button></td>
+              <td><button class="btn btn-outline-primary" (click)="cleanDisplay()">Limpiar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
       <div class="overflow-auto" style="max-width: 1000px; max-height: 540px;">
         <table class="table" id="miTabla" *ngIf="tablaVisible">
           <thead>

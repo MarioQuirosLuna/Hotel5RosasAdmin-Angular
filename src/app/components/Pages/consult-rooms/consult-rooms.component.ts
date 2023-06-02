@@ -13,6 +13,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./consult-rooms.component.css']
 })
 export class ConsultRoomsComponent {
+
+  myForm: FormGroup;
+
   tablaVisible = false;
   resultText = ''
   roomTypes: any = [];
@@ -25,6 +28,9 @@ export class ConsultRoomsComponent {
   username: String = "";
 
   constructor(private service: FacilitiesServiceService, private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService) {
+    this.myForm = new FormGroup({
+      roomType: new FormControl()
+    });
     this.service.getRoomsType().subscribe(roomTypes => {
       this.roomTypes = roomTypes;
     });
@@ -44,6 +50,7 @@ export class ConsultRoomsComponent {
     let minutes = ('0' + originalDate.getMinutes()).slice(-2);
 
     let formatedDate = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+    let formatedDateToday = year + '-' + month + '-' + day;
 
     if (!this.startDate || !this.endDate || !this.roomId) {
       Swal.fire({
@@ -53,8 +60,7 @@ export class ConsultRoomsComponent {
       });
       return false;
     }
-
-    if (this.startDate < formatedDate || this.endDate < formatedDate) {
+    if (this.startDate < formatedDateToday || this.endDate < formatedDate) {
       Swal.fire({
         icon: 'warning',
         title: 'Error',
