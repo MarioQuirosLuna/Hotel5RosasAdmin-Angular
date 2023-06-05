@@ -3,15 +3,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationServiceService } from '../../services/reservation-service/reservation-service.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../Util/authService';
+import * as jspdf from 'jspdf';
+import 'jspdf-autotable';
+import { UserOptions } from 'jspdf-autotable';
+
+interface jsPDFWithPlugin extends jspdf.jsPDF {
+  autoTable: (options: UserOptions) => jspdf.jsPDF;
+}
 
 @Component({
   selector: 'app-reservation-view',
   templateUrl: './reservation-view.component.html',
   styleUrls: ['./reservation-view.component.css'],
 })
+
+
 export class ReservationViewComponent {
   username: String = '';
   _id: Number = 0;
+
+  reservation: any = []
 
   objectPage: any = {
     pK_Reserva: '',
@@ -47,6 +58,7 @@ export class ReservationViewComponent {
       this._id = params['id'];
     });
     this.service.getIdReservation(this._id).subscribe((publicity) => {
+      this.reservation[0] = publicity
       this._id = publicity.pK_Publicidad;
       this.objectPage.pK_Reserva = publicity.pK_Reserva;
       this.objectPage.tipo_Habitacion = publicity.tipo_Habitacion;
@@ -96,5 +108,21 @@ export class ReservationViewComponent {
     });
   }
 
-  downloadReservation(id: Number) { }
+  downloadReservation(id: Number) {
+    const doc = new jspdf.jsPDF('landscape', 'px', 'a4') as jsPDFWithPlugin;
+    doc.autoTable({
+      didDrawPage: function (data: any) {
+        doc.setFontSize(14);
+        doc.setTextColor(40);
+        doc.text('Reservación', data.settings.margin.left, 20);
+      },
+      head: [['Id Reserva', 'Tipo Habitación', 'Nombre Cliente', 'Apellidos Cliente', 'Número Tarjeta'
+    ,'Email', 'Fecha Transacción', 'Fecha Inicio', 'Fecha Fin', 'Costo Total']],
+      body: this.reservation.map((row: { pK_Reserva: any; tipo_Habitacion: any; nombre_Cliente: any; apellidos_Cliente: any; numero_Tarjeta: any;
+        correo: any; fecha_Transaccion: any; fecha_Inicio: any; fecha_Fin: any; tarifa_Total: any;
+      }) => [row.pK_Reserva, row.tipo_Habitacion, row.nombre_Cliente , row.apellidos_Cliente, row.numero_Tarjeta, row.correo, row.fecha_Transaccion
+      ,row.fecha_Inicio, row.fecha_Fin, row.tarifa_Total]),
+    });
+    doc.save('Reservación_' + id + '.pdf');
+  }
 }

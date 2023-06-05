@@ -29,6 +29,9 @@ import { ModifyFacilityPageComponent } from './components/Pages/modify-by-pages/
 import { PublicityCreateComponent } from './components/Pages/publicity-create/publicity-create.component';
 import { PublicityModifyComponent } from './components/Pages/publicity-modify/publicity-modify.component';
 import { ReservationViewComponent } from './components/Pages/reservation-view/reservation-view.component';
+import { EditRoomComponent } from './components/Pages/edit-room/edit-room.component';
+import { ManageNormalRoomsComponent } from './components/Pages/manage-normal-rooms/manage-normal-rooms.component';
+import { CreateNormalRoomComponent } from './components/Pages/create-normal-room/create-normal-room.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -48,6 +51,11 @@ const routes: Routes = [
   { path: 'modify-publicity', component: PublicityModifyComponent },
   { path: 'reservation-view', component: ReservationViewComponent },
   { path: 'modify-contact-us', component: ModifyContactUsComponent },
+  { path: 'edit-room', component: EditRoomComponent },
+
+
+  { path: 'manage-normal-rooms', component: ManageNormalRoomsComponent },
+  { path: 'create-normal-rooms', component: CreateNormalRoomComponent },
 
   { path: 'create-season', component: CreateSeasonComponent },
   { path: 'modify-season', component: ModifySeasonComponent },

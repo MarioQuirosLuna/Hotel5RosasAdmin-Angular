@@ -38,6 +38,9 @@ import { PublicityModifyComponent } from './components/Pages/publicity-modify/pu
 import { PublicityViewComponent } from './components/Pages/publicity-view/publicity-view.component';
 import { ReservationViewComponent } from './components/Pages/reservation-view/reservation-view.component';
 import { ModifyContactUsComponent } from './components/Pages/modify-by-pages/modify-contact-us/modify-contact-us.component';
+import { EditRoomComponent } from './components/Pages/edit-room/edit-room.component';
+import { ManageNormalRoomsComponent } from './components/Pages/manage-normal-rooms/manage-normal-rooms.component';
+import { CreateNormalRoomComponent } from './components/Pages/create-normal-room/create-normal-room.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +74,10 @@ import { ModifyContactUsComponent } from './components/Pages/modify-by-pages/mod
     PublicityModifyComponent,
     PublicityViewComponent,
     ReservationViewComponent,
-    ModifyContactUsComponent
+    ModifyContactUsComponent,
+    EditRoomComponent,
+    ManageNormalRoomsComponent,
+    CreateNormalRoomComponent
   ],
   imports: [
     BrowserModule,

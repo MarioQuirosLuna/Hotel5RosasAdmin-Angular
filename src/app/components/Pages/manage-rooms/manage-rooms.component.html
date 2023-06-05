@@ -6,7 +6,7 @@
 
   <div class="information">
     <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
-      <h1>Administrar Habitaciones <a routerLink="" style="padding-left: 20px;">Crear Habitación</a></h1>
+      <h1>Administrar Tipo Habitaciones <a routerLink="/create-normal-rooms" style="padding-left: 20px;">Crear Tipo Habitación</a></h1>
 
       <div *ngFor="let roomType of roomsTypes;">
         <div class="border border-1 p-3 m-3 rounded-3 border-dark">
@@ -31,6 +31,7 @@
               <tr>
                 <th scope="col">Número de Habitación</th>
                 <th scope="col">Estado Hoy</th>
+                <th scope="col">Modificar</th>
               </tr>
             </thead>
             <tbody>
@@ -43,6 +44,11 @@
                   class="text-center fw-bold text-white">
                   {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
                 </td>
+
+                <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                  <button type="button" class="btn btn-primary" (click)="goEditRoom(room.pK_Habitacion)">Editar</button>
+                </td>
+
               </tr>
             </tbody>
           </table>

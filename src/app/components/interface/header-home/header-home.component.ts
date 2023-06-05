@@ -23,7 +23,7 @@ export class HeaderHomeComponent {
 
   logOut() {
     this.authService.logout();
-    // this.router.navigate([''])
+    this.router.navigate(['login'])
   }
 
 }

@@ -27,6 +27,7 @@ export class ManageRoomsComponent {
       this.roomsTypes = roomTypes;
     })
     this.serviceRoom.getRooms().subscribe(rooms => {
+      console.log(rooms)
       this.rooms = rooms;
     })
   }
@@ -36,6 +37,19 @@ export class ManageRoomsComponent {
       queryParams: { username: this.username, id: _id },
     };
     this.router.navigate(['/modify-room'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+  goEditRoom(_id: Number): void {
+    const navigationExtras = {
+      queryParams: { username: this.username, id: _id },
+    };
+    this.router.navigate(['/edit-room'], navigationExtras).then(() => {
       window.history.replaceState(
         {},
         document.title,
