@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/components/Util/authService';
 })
 export class ModifyUbicationPageComponent {
   ubication: string = '';
+  latitude: number = 0;
+  longitude: number = 0;
 
   username: String = '';
 
@@ -22,6 +24,8 @@ export class ModifyUbicationPageComponent {
   ) {
     this.service.getUbication().subscribe((ubication) => {
       this.ubication = ubication[0].informacion;
+      this.latitude = ubication[0].latitud
+      this.longitude = ubication[0].longitud
     });
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];
@@ -40,10 +44,23 @@ export class ModifyUbicationPageComponent {
     }
   }
 
+  updateLatitude(nuevoValor: Event) {
+    if (nuevoValor.target) {
+      this.latitude = Number((nuevoValor.target as HTMLInputElement).value);
+    }
+  }
+  updateLongitude(nuevoValor: Event) {
+    if (nuevoValor.target) {
+      this.longitude = Number((nuevoValor.target as HTMLInputElement).value);
+    }
+  }
+
   saveUbicationPage() {
     this.service
       .putUbication({
         Informacion: this.ubication,
+        Latitud: this.latitude,
+        Longitud: this.longitude,
       })
       .subscribe(() => {
         Swal.fire({

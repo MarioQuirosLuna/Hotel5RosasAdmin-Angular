@@ -11,14 +11,27 @@
       <h3>Cómo llegar</h3>
 
 
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-          style="resize: none; text-align: justify;" (change)="updateInformation($event)">{{ubication}}</textarea>
-        <br>
-        <br>
-        <div style="margin-left: 800px;">
-          <button type="reset" class="btn btn-danger me-3" (click)="backPage()">Volver</button>
-          <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;" (click)="saveUbicationPage()">Guardar</button>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
+        style="resize: none; text-align: justify;" (change)="updateInformation($event)">
+          {{ubication}}
+        </textarea>
+      <div class="d-flex pt-3">
+        <div class="pe-5">
+          <label for="longitude">Longitud</label>
+          <input type="text" class="form-control" id="longitude" value="{{longitude}}" (change)="updateLongitude($event)">
         </div>
+        <div>
+          <label for="latitude">Latitud</label>
+          <input type="text" class="form-control" id="latitude" value="{{latitude}}" (change)="updateLatitude($event)">
+        </div>
+      </div>
+      <br>
+      <br>
+      <div style="margin-left: 800px;">
+        <button type="reset" class="btn btn-danger me-3" (click)="backPage()">Volver</button>
+        <button type="submit" class="btn btn-outline-primary" style="margin-right: 10px;"
+          (click)="saveUbicationPage()">Guardar</button>
+      </div>
 
 
     </div>
