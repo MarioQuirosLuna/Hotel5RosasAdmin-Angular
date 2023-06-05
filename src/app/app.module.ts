@@ -41,6 +41,7 @@ import { ModifyContactUsComponent } from './components/Pages/modify-by-pages/mod
 import { EditRoomComponent } from './components/Pages/edit-room/edit-room.component';
 import { ManageNormalRoomsComponent } from './components/Pages/manage-normal-rooms/manage-normal-rooms.component';
 import { CreateNormalRoomComponent } from './components/Pages/create-normal-room/create-normal-room.component';
+import { MapComponent } from './components/Util/map/map.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { CreateNormalRoomComponent } from './components/Pages/create-normal-room
     ModifyContactUsComponent,
     EditRoomComponent,
     ManageNormalRoomsComponent,
-    CreateNormalRoomComponent
+    CreateNormalRoomComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

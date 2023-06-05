@@ -11,14 +11,15 @@
       <h3>Cómo llegar</h3>
 
 
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
         style="resize: none; text-align: justify;" (change)="updateInformation($event)">
           {{ubication}}
         </textarea>
       <div class="d-flex pt-3">
         <div class="pe-5">
           <label for="longitude">Longitud</label>
-          <input type="text" class="form-control" id="longitude" value="{{longitude}}" (change)="updateLongitude($event)">
+          <input type="text" class="form-control" id="longitude" value="{{longitude}}"
+            (change)="updateLongitude($event)">
         </div>
         <div>
           <label for="latitude">Latitud</label>
@@ -26,6 +27,9 @@
         </div>
       </div>
       <br>
+      <div class="d-flex p-3">
+        <app-map [longitude]="longitude" [latitude]="latitude"></app-map>
+      </div>
       <br>
       <div style="margin-left: 800px;">
         <button type="reset" class="btn btn-danger me-3" (click)="backPage()">Volver</button>
