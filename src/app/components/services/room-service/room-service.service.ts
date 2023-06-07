@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class RoomServiceService {
   constructor(private http: HttpClient) { }
 
-  apiRoomURL = '/Entity_Habitacion/GetEstadoHabitacion/';
+  apiRoomURL = '/Entity_Habitacion/GetRoomStatus/';
   getRoom(): Observable<any> {
     return this.http.get(environment.url + this.apiRoomURL);
   }
