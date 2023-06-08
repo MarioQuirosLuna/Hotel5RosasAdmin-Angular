@@ -21,8 +21,6 @@ export class RoomServiceService {
 
   apiRoomInsertURL = '/Entity_Habitacion/InsertRoom';
   insertRoom(room : any): Observable<any> {
-
-    console.log(room)
     return this.http.post(environment.url + this.apiRoomInsertURL, room);
   }
 
@@ -34,7 +32,6 @@ export class RoomServiceService {
 
   apiRoomUpdateURL = '/Entity_Habitacion/UpdateRoom';
   putRoom(room : any): Observable<any> {
-    console.log(room)
     return this.http.put(environment.url + this.apiRoomUpdateURL, room);
   }
 
