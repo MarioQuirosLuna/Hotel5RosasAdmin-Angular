@@ -32,9 +32,9 @@ export class ManageNormalRoomsComponent {
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
-    if (!this.authService.isLoggedIn()) {
+    /*if (!this.authService.isLoggedIn()) {
       this.route.navigate(['']);
-    }
+    }*/
     this.service.getRoom().subscribe((publicity) => {
       console.log(publicity)
       this.publicity = publicity;
@@ -79,9 +79,9 @@ export class ManageNormalRoomsComponent {
     });
   }
 
-  goEdit(_id: number) {
+  goEdit(_id: Number, _typeRoom: Number, _estado: String) {
     const navigationExtras = {
-      queryParams: { username: this.username, id: _id },
+      queryParams: { username: this.username, id: _id , typeRoom: _typeRoom, estado: _estado},
     };
 
     this.route.navigate(['/edit-room'], navigationExtras).then(() => {

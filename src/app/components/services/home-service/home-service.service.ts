@@ -14,7 +14,7 @@ export class HomeServiceService {
     return this.http.get(environment.url+this.apiURL);
   }
 
-  apiURLTodayHotel = '/Entity_Habitacion/GetEstadoHabitacion';
+  apiURLTodayHotel = '/Entity_Habitacion/GetRoomStatusToday';
   getHotelToday(): Observable<any> {
     return this.http.get(environment.url+this.apiURLTodayHotel);
   }

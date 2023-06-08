@@ -32,8 +32,9 @@ export class RoomServiceService {
     return this.http.delete(environment.url + this.apiRoomDeleteURL + id);
   }
 
-  apiRoomUpdateURL = '/Entity_TipoHabitacion/UpdateRoom/';
+  apiRoomUpdateURL = '/Entity_Habitacion/UpdateRoom';
   putRoom(room : any): Observable<any> {
+    console.log(room)
     return this.http.put(environment.url + this.apiRoomUpdateURL, room);
   }
 

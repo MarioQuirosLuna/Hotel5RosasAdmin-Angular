@@ -16,11 +16,15 @@ import { RoomServiceService } from '../../services/room-service/room-service.ser
 export class EditRoomComponent {
   username: String = '';
   _id: Number = 0;
+  _roomType: String = ''
+  _estado: String = ''
+  _estadoAux: String = ''
 
   seasonForm: FormGroup;
 
   typeRoomId : Number = 0
   estadoString : String = ""
+  typeRoomID: Number = 0;
 
   roomsTypes: any = [];
   seasonsList: any = [];
@@ -34,40 +38,56 @@ export class EditRoomComponent {
     private serviceTypeRoom: RoomsTypeServiceService,
     private authService: AuthService
   ) {
+    this.route.queryParams.subscribe((params) => {
+      this.username = params['username'];
+      this._id = parseInt(params['id']);
+      this._roomType = params['typeRoom'];
+      this._estado = params['estado'];
+    });
     this.seasonForm = new FormGroup({
       typeHabitacion: new FormControl(''),
       estado: new FormControl('', [Validators.required]),
-
     });
-
-    this.seasonForm.controls['typeHabitacion'].setValue("aaa", {onlySelf: true});
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      this.username = params['username'];
-      this._id = params['id'];
-      console.log(params['id'])
-    });
     /*if (!this.authService.isLoggedIn()) {
       this.router.navigate(['']);
     }*/
-
     this.serviceTypeRoom.getRoomsType().subscribe((roomsTypes) => {
       this.roomsTypes = roomsTypes;
+      console.log(roomsTypes)
     });
 
-    this.serviceRoom.getRoomId(this._id).subscribe((roomsTypes) => {
-      this.typeRoomId = this.roomsTypes.fK_Tipo_Habitacion
-      console.log(this.typeRoomId)
-      console.log(roomsTypes);
-      this.seasonForm = new FormGroup({
-        typeHabitacion: new FormControl(this.typeRoomId),
-        estado: new FormControl(this.roomsTypes.estado_Del_Dia, [Validators.required]),
+    this.serviceRoom.getRoomId(this._id).subscribe((room) => {
+      this.route.queryParams.subscribe((params) => {
+        this.username = params['username'];
+        this._id = params['id'];
+        this._roomType = params['typeRoom'];
+        this._estado = params['estado'];
+      });
+      this.serviceTypeRoom.getRoomsType().subscribe((roomsTypes) => {
+        this.roomsTypes = roomsTypes;
+        for (let j = 0; j < this.roomsTypes.length; j++) {
+          if (this._roomType == this.roomsTypes[j].nombre) {
+            this.typeRoomID = this.roomsTypes[j].pK_Tipo_Habitacion;
+            break;
+          }
+        }
+        if(this._estado == 'Utilizable'){
+            this._estadoAux = 'Disponible'
+        }else{
+          this._estadoAux = 'Ocupada'
+        }
+        this.seasonForm = new FormGroup({
+          typeHabitacion: new FormControl(this.typeRoomID),
+          estado: new FormControl(this._estadoAux, [Validators.required]),
+        });
       });
 
-      console.log(this.typeRoomId)
     });
+
+
   }
 
   Validation() {
@@ -101,16 +121,23 @@ export class EditRoomComponent {
     return true;
   }
 
-  addSeason() {
-    if (this.seasonForm.value.estado == 'true') {
+  editRoom() {
+    if (this.seasonForm.value.estado == 'Disponible') {
       this.estado = true;
     } else {
       this.estado = false;
     }
     //Call Service to Add Season
     if (/*this.Validation()*/ true) {
+      this.route.queryParams.subscribe((params) => {
+        this.username = params['username'];
+        this._id = parseInt(params['id']);
+        this._roomType = params['typeRoom'];
+        this._estado = params['estado'];
+      });
       this.serviceRoom
-        .insertRoom({
+        .putRoom({
+          pK_Habitacion : this._id,
           fK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
           estado: this.estado,
         })
