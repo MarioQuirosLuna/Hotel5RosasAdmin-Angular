@@ -42,6 +42,8 @@ import { EditRoomComponent } from './components/Pages/edit-room/edit-room.compon
 import { ManageNormalRoomsComponent } from './components/Pages/manage-normal-rooms/manage-normal-rooms.component';
 import { CreateNormalRoomComponent } from './components/Pages/create-normal-room/create-normal-room.component';
 import { MapComponent } from './components/Util/map/map.component';
+import { FacilityCreateComponent } from './components/Pages/facility-create/facility-create.component';
+import { FacilityModifyComponent } from './components/Pages/facility-modify/facility-modify.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { MapComponent } from './components/Util/map/map.component';
     EditRoomComponent,
     ManageNormalRoomsComponent,
     CreateNormalRoomComponent,
-    MapComponent
+    MapComponent,
+    FacilityCreateComponent,
+    FacilityModifyComponent
   ],
   imports: [
     BrowserModule,

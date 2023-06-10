@@ -6,7 +6,8 @@
 
   <div class="information">
     <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
-      <h1>Administrar Publicidad <a routerLink="" (click)="routerCreatePublicity()" style="padding-left: 20px;">Crear Publicidad</a></h1>
+      <h1>Administrar Publicidad <a routerLink="" (click)="routerCreatePublicity()" style="padding-left: 20px;">Crear
+          Publicidad</a></h1>
 
       <div *ngFor="let publicity of publicity;">
         <div class="border border-1 p-3 m-3 rounded-3 border-dark">
@@ -16,14 +17,16 @@
               <span class="ps-3">
                 <h3 class="fw-bold">{{publicity.nombre}}</h3>
                 <h4>Link:
-                  <span class="text-primary"><a href="{{publicity.descripcion}}" target="_blank"> {{publicity.descripcion}}</a></span>
+                  <span class="text-primary"><a href="{{publicity.descripcion}}" target="_blank">
+                      {{publicity.descripcion}}</a></span>
                 </h4>
               </span>
             </div>
             <span class="d-flex justify-content-end">
-              <button type="button" class="btn btn-primary me-3" (click)="goEdit(publicity.pK_Publicidad)">Editar</button>
+              <button type="button" class="btn btn-primary me-3"
+                (click)="goEdit(publicity.pK_Publicidad)">Editar</button>
               <button type="button" class="btn btn-danger" (click)="goDelete(publicity.pK_Publicidad)">Eliminar</button>
-          </span>
+            </span>
           </div>
         </div>
       </div>

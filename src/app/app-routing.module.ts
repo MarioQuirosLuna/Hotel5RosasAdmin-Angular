@@ -32,6 +32,8 @@ import { ReservationViewComponent } from './components/Pages/reservation-view/re
 import { EditRoomComponent } from './components/Pages/edit-room/edit-room.component';
 import { ManageNormalRoomsComponent } from './components/Pages/manage-normal-rooms/manage-normal-rooms.component';
 import { CreateNormalRoomComponent } from './components/Pages/create-normal-room/create-normal-room.component';
+import { FacilityCreateComponent } from './components/Pages/facility-create/facility-create.component';
+import { FacilityModifyComponent } from './components/Pages/facility-modify/facility-modify.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -53,6 +55,9 @@ const routes: Routes = [
   { path: 'modify-contact-us', component: ModifyContactUsComponent },
   { path: 'edit-room', component: EditRoomComponent },
 
+
+  { path: 'modify-facility', component: FacilityModifyComponent },
+  { path: 'create-facility', component: FacilityCreateComponent },
 
   { path: 'manage-normal-rooms', component: ManageNormalRoomsComponent },
   { path: 'create-normal-rooms', component: CreateNormalRoomComponent },

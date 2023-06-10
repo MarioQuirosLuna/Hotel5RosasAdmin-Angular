@@ -54,6 +54,19 @@ export class LateralMenuComponent {
     });
   }
 
+  routerManageFacilities() {
+    const navigationExtras = {
+      queryParams: { username: this.username },
+    };
+    this.router.navigate(['/modify-facilities'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
   routerManageNormalRooms() {
     const navigationExtras = {
       queryParams: { username: this.username },
