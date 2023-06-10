@@ -26,7 +26,6 @@ export class RoomServiceService {
 
   apiRoomDeleteURL = '/Entity_Habitacion/PutEliminarRoom/';
   deleteRoom(id : Number): Observable<any> {
-    console.log(id)
     return this.http.delete(environment.url + this.apiRoomDeleteURL + id);
   }
 

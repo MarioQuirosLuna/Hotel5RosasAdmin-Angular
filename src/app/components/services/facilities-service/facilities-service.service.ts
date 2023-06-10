@@ -36,7 +36,6 @@ export class FacilitiesServiceService {
 
   modifyFacility = '/Entity_Facilidad/UpdateFacility';
   putFacility(object : any): Observable<any> {
-    console.log(object)
     return this.http.put(environment.url + this.modifyFacility, object);
   }
 
