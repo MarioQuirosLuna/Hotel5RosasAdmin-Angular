@@ -23,7 +23,6 @@ export class ManageNormalRoomsComponent {
     private authService: AuthService
   ) {
     this.service.getRoom().subscribe((publicity) => {
-      console.log(publicity)
       this.publicity = publicity;
     });
    }
@@ -32,11 +31,10 @@ export class ManageNormalRoomsComponent {
     this.router.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
-    /*if (!this.authService.isLoggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       this.route.navigate(['']);
-    }*/
+    }
     this.service.getRoom().subscribe((publicity) => {
-      console.log(publicity)
       this.publicity = publicity;
     });
   }

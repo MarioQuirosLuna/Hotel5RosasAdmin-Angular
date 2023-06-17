@@ -14,7 +14,6 @@ export class ModifyFacilitiesPageComponent {
 
   username: String = '';
 
-
   constructor(
     private service: FacilitiesServiceService,
     private route: Router,
@@ -24,15 +23,18 @@ export class ModifyFacilitiesPageComponent {
     this.service.getHotelFacilities().subscribe((facilities) => {
       this.facilities = facilities;
     });
-    this.router.queryParams.subscribe((params) => {
-      this.username = params['username'];
-    });
   }
 
   ngOnInit() {
+    this.router.queryParams.subscribe((params) => {
+      this.username = params['username'];
+    });
     if (!this.authService.isLoggedIn()) {
       this.route.navigate(['']);
     }
+    this.service.getHotelFacilities().subscribe((facilities) => {
+      this.facilities = facilities;
+    });
   }
 
   deleteFacility(idFacility: number) {
@@ -60,7 +62,7 @@ export class ModifyFacilitiesPageComponent {
     });
   }
 
-  routerFacilityCreate(){
+  routerFacilityCreate() {
     const navigationExtras = {
       queryParams: {
         username: this.username,

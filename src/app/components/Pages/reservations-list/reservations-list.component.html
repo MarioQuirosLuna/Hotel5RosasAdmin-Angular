@@ -37,8 +37,10 @@
             <td>{{reservation.fecha_Fin | date : 'YYYY-MM-dd'}}</td>
             <td>{{reservation.tarifa_Total}}</td>
             <td>{{reservation.tipo_Habitacion}}</td>
-            <td><button type="reset" class="btn btn-primary" (click)="viewReservation(reservation.pK_Reserva)">Ver</button></td>
-            <td><button type="reset" class="btn btn-danger" (click)="deleteReservation(reservation.pK_Reserva)">Eliminar</button></td>
+            <td><button type="reset" class="btn btn-primary"
+                (click)="viewReservation(reservation.pK_Reserva)">Ver</button></td>
+            <td><button type="reset" class="btn btn-danger"
+                (click)="deleteReservation(reservation.pK_Reserva)">Eliminar</button></td>
           </tr>
         </tbody>
       </table>

@@ -70,12 +70,19 @@ export class ManageSeasonComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.serviceSeason.deleteSeason(_id).subscribe((res) => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "El registro se eliminó correctamente!",
+            showConfirmButton: false,
+            timer: 1800,
+          });
           this.ngOnInit();
         });
         Swal.fire({
           position: "center",
-          icon: "success",
-          title: "El registro se eliminó correctamente!",
+          icon: "error",
+          title: "El registro no se puede eliminar!",
           showConfirmButton: false,
           timer: 1800,
         });

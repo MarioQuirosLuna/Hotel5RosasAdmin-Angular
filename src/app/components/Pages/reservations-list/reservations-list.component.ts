@@ -68,18 +68,7 @@ export class ReservationsListComponent implements OnInit {
           showConfirmButton: false,
           timer: 1800,
         });
-        const navigationExtras = {
-          queryParams: { username: this.username },
-        };
-        this.router
-          .navigate(['/reservations-list'], navigationExtras)
-          .then(() => {
-            window.history.replaceState(
-              {},
-              document.title,
-              this.router.url.split('?')[0]
-            );
-          });
+        this.ngOnInit();
       }
     });
   }
