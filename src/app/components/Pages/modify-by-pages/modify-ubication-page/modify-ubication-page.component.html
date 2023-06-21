@@ -19,11 +19,12 @@
         <div class="pe-5">
           <label for="longitude">Longitud</label>
           <input type="text" class="form-control" id="longitude" value="{{longitude}}"
-            (change)="updateLongitude($event)">
+            (change)="updateLongitude($event)" disabled>
         </div>
         <div>
           <label for="latitude">Latitud</label>
-          <input type="text" class="form-control" id="latitude" value="{{latitude}}" (change)="updateLatitude($event)">
+          <input type="text" class="form-control" id="latitude" value="{{latitude}}" (change)="updateLatitude($event)"
+            disabled>
         </div>
       </div>
       <br>
