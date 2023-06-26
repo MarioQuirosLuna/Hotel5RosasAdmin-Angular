@@ -54,7 +54,7 @@
                                 {{room.numero_Habitacion}}
                             </td>
                             <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion"
-                                [ngClass]="{'bg-success': room.estado_Del_Dia == 'Disponible', 'bg-danger': room.estado_Del_Dia != 'Disponible'}"
+                                [ngClass]="{'bg-success': room.estado_Del_Dia == 'Utilizable', 'bg-danger': room.estado_Del_Dia != 'Utilizable'}"
                                 class="text-center fw-bold text-white">
                                 {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
                             </td>
