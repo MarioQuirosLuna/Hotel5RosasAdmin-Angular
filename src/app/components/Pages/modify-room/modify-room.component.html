@@ -41,11 +41,16 @@
                         placeholder="Escribe aquí la descripción del tipo de habitación"
                         (change)="actualizarDescripcion($event)"></textarea>
                 </div>
+                <div class="pt-3 pb-3 text-end">
+                    <button type="button" class="btn btn-primary" (click)="addRoom(pk_tipo_habitacion)">Añadir nueva
+                        habitación</button>
+                </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Número de Habitación</th>
-                            <th scope="col">Estado Hoy</th>
+                            <th class="text-center" scope="col">Número de Habitación</th>
+                            <th class="text-center" scope="col">Estado Hoy</th>
+                            <th class="text-center" scope="col">Eliminar habitación</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +62,10 @@
                                 [ngClass]="{'bg-success': room.estado_Del_Dia == 'Utilizable', 'bg-danger': room.estado_Del_Dia != 'Utilizable'}"
                                 class="text-center fw-bold text-white">
                                 {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
+                            </td>
+                            <td class="text-center" *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                                <button type="button" class="btn btn-danger"
+                                    (click)="goDeleteRoom(room.pK_Habitacion)">Eliminar</button>
                             </td>
                         </tr>
                     </tbody>

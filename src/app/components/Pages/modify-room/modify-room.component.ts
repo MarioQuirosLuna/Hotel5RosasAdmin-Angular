@@ -3,6 +3,7 @@ import { RoomsTypeServiceService } from '../../services/rooms-service/rooms-serv
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../Util/authService';
+import { RoomServiceService } from '../../services/room-service/room-service.service';
 
 @Component({
   selector: 'app-modify-room',
@@ -24,7 +25,7 @@ export class ModifyRoomComponent {
   descripcion: string = "";
   nombre: string = "";
 
-  constructor(private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService, private authService: AuthService) {
+  constructor(private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService, private authService: AuthService, private service: RoomServiceService) {
     const navigationExtras = {
       queryParams: { username: this.username, id: this._id },
     };
@@ -136,5 +137,62 @@ export class ModifyRoomComponent {
         this.router.url.split('?')[0]
       );
     });
+  }
+
+  goDeleteRoom(_id: Number) {
+    Swal.fire({
+      title: 'Quieres eliminar la habitación?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteRoom(_id).subscribe((res) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'El registro se eliminó correctamente!',
+            showConfirmButton: false,
+            timer: 1800,
+          });
+          this.ngOnInit();
+        });
+      }
+    });
+  }
+
+  addRoom(_id: Number) {
+    this.service
+      .insertRoom({
+        fK_Tipo_Habitacion: _id,
+        estado: true,
+      })
+      .subscribe(
+        () => {
+          this.serviceRoom.getRooms().subscribe(rooms => {
+            this.rooms = rooms;
+          })
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'El registro se creó correctamente!',
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (error) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al crear',
+            text: 'Por favor, intenta nuevamente más tarde.',
+            showConfirmButton: true,
+          });
+        }
+      );
+
   }
 }
