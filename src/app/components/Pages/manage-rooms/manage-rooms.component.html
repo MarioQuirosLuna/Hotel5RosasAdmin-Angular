@@ -6,7 +6,8 @@
 
   <div class="information">
     <div class="overflow-auto" style="max-width: 1000px; max-height: 640px;">
-      <h1>Administrar Tipo Habitaciones <a routerLink="/create-normal-rooms" style="padding-left: 20px;">Crear Tipo Habitación</a></h1>
+      <h1>Administrar Tipo Habitaciones <a routerLink="/create-type-rooms" style="padding-left: 20px;">Crear Tipo
+          Habitación</a></h1>
 
       <div *ngFor="let roomType of roomsTypes;">
         <div class="border border-1 p-3 m-3 rounded-3 border-dark">
@@ -40,7 +41,7 @@
                   {{room.numero_Habitacion}}
                 </td>
                 <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion"
-                  [ngClass]="{'bg-success': room.estado_Del_Dia == 'Disponible', 'bg-danger': room.estado_Del_Dia != 'Disponible'}"
+                  [ngClass]="{'bg-success': room.estado_Del_Dia == 'Utilizable', 'bg-danger': room.estado_Del_Dia != 'Utilizable'}"
                   class="text-center fw-bold text-white">
                   {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
                 </td>
