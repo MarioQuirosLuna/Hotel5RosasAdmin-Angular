@@ -21,23 +21,29 @@
                 </h4>
               </span>
             </div>
-            <span>
-              <button type="button" class="btn btn-primary"
-                (click)="goEdit(roomType.pK_Tipo_Habitacion)">Editar</button>
-            </span>
+            <div>
+              <span class="pe-3">
+                <button type="button" class="btn btn-danger" (click)="goDelete(roomType.pK_Tipo_Habitacion)">Eliminar
+                  Tipo habitación</button>
+              </span>
+              <span>
+                <button type="button" class="btn btn-primary" (click)="goEdit(roomType.pK_Tipo_Habitacion)">Editar Tipo
+                  habitación</button>
+              </span>
+            </div>
           </div>
           <p class="pt-2">{{roomType.descripcion}}</p>
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Número de Habitación</th>
-                <th scope="col">Estado Hoy</th>
-                <th scope="col">Modificar</th>
+                <th class="text-center" scope="col">Número de Habitación</th>
+                <th class="text-center" scope="col">Estado Hoy</th>
+                <th class="text-center" scope="col">Eliminar habitación</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let room of rooms;">
-                <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                <td class="text-center" *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
                   {{room.numero_Habitacion}}
                 </td>
                 <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion"
@@ -45,9 +51,8 @@
                   class="text-center fw-bold text-white">
                   {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
                 </td>
-
-                <td *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
-                  <button type="button" class="btn btn-primary" (click)="goEditRoom(room.pK_Habitacion)">Editar</button>
+                <td class="text-center" *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
+                  <button type="button" class="btn btn-danger" (click)="goDeleteRoom(room.pK_Habitacion)">Eliminar</button>
                 </td>
 
               </tr>
