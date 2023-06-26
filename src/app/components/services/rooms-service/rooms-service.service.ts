@@ -11,10 +11,11 @@ export class RoomsTypeServiceService {
   constructor(private http: HttpClient) { }
 
   apiRoomsTypesURL = '/Entity_TipoHabitacion/GetRoomTypes';
-  apiRoomsURL = '/Entity_Habitacion/GetEstadoHabitacion';
+  apiRoomsURL = '/Entity_Habitacion/GetRoomStatus';
   apiRoomTypeByIdURL = '/Entity_TipoHabitacion/GetRoomTypesById';
   apiRoomTypeUpdateURL = '/Entity_TipoHabitacion/PutRoomTypesById';
   apiRoomGetAvailabilityURL = '/Entity_Habitacion/GetAvaibilityRoom';
+  apiRoomInsertTypeRoomURL = '/Entity_TipoHabitacion/InsertTypeRoom'
   getRoomsType(): Observable<any> {
     return this.http.get(environment.url + this.apiRoomsTypesURL);
   }
@@ -29,5 +30,9 @@ export class RoomsTypeServiceService {
   }
   apiRoomGetAvailability(startDate: String, endDate: String, roomType: Number): Observable<any> {
     return this.http.get(environment.url + this.apiRoomGetAvailabilityURL + '/' + startDate + '/' + endDate + '/' + roomType);
+  }
+  apiRoomInsertTypeRoom(typeRoom: any): Observable<any> {
+    console.log(typeRoom)
+    return this.http.post(environment.url + this.apiRoomInsertTypeRoomURL, typeRoom);
   }
 }

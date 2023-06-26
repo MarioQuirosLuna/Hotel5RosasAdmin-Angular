@@ -44,6 +44,7 @@ import { CreateNormalRoomComponent } from './components/Pages/create-normal-room
 import { MapComponent } from './components/Util/map/map.component';
 import { FacilityCreateComponent } from './components/Pages/facility-create/facility-create.component';
 import { FacilityModifyComponent } from './components/Pages/facility-modify/facility-modify.component';
+import { CreateTypeRoomComponent } from './components/Pages/create-type-room/create-type-room.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { FacilityModifyComponent } from './components/Pages/facility-modify/faci
     CreateNormalRoomComponent,
     MapComponent,
     FacilityCreateComponent,
-    FacilityModifyComponent
+    FacilityModifyComponent,
+    CreateTypeRoomComponent
   ],
   imports: [
     BrowserModule,

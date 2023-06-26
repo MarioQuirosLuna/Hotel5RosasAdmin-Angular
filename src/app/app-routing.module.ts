@@ -34,13 +34,13 @@ import { ManageNormalRoomsComponent } from './components/Pages/manage-normal-roo
 import { CreateNormalRoomComponent } from './components/Pages/create-normal-room/create-normal-room.component';
 import { FacilityCreateComponent } from './components/Pages/facility-create/facility-create.component';
 import { FacilityModifyComponent } from './components/Pages/facility-modify/facility-modify.component';
+import { CreateTypeRoomComponent } from './components/Pages/create-type-room/create-type-room.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'modify-page', component: ModifyPagesComponent },
   { path: 'reservations-list', component: ReservationsListComponent },
-  { path: 'manage-rooms', component: ManageRoomsComponent },
   { path: 'manage-season', component: ManageSeasonComponent },
   { path: 'manage-publicity', component: PublicityViewComponent },
   { path: 'manage-promotions', component: ManagePromotionsComponent },
@@ -61,6 +61,9 @@ const routes: Routes = [
 
   { path: 'manage-normal-rooms', component: ManageNormalRoomsComponent },
   { path: 'create-normal-rooms', component: CreateNormalRoomComponent },
+
+  { path: 'manage-rooms', component: ManageRoomsComponent },
+  { path: 'create-type-rooms', component: CreateTypeRoomComponent },
 
   { path: 'create-season', component: CreateSeasonComponent },
   { path: 'modify-season', component: ModifySeasonComponent },
