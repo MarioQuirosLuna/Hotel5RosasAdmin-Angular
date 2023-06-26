@@ -58,6 +58,16 @@ export class CreateTypeRoomComponent {
 
       return false;
     }
+    if (
+      this.typeRoomForm.value.priceTypeRoom.toString().length > 7
+    ) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error',
+        text: 'Por favor, ingrese una cifra de menos de 7 digitos en la tarifa',
+      });
+      return false
+    }
     return true;
   }
 

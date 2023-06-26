@@ -32,7 +32,6 @@ export class RoomsTypeServiceService {
     return this.http.get(environment.url + this.apiRoomGetAvailabilityURL + '/' + startDate + '/' + endDate + '/' + roomType);
   }
   apiRoomInsertTypeRoom(typeRoom: any): Observable<any> {
-    console.log(typeRoom)
     return this.http.post(environment.url + this.apiRoomInsertTypeRoomURL, typeRoom);
   }
 }

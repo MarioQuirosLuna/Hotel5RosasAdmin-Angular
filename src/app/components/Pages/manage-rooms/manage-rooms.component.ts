@@ -27,7 +27,6 @@ export class ManageRoomsComponent {
       this.roomsTypes = roomTypes;
     })
     this.serviceRoom.getRooms().subscribe(rooms => {
-      console.log(rooms)
       this.rooms = rooms;
     })
   }
