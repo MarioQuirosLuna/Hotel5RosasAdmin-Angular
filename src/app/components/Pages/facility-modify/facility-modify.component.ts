@@ -93,10 +93,10 @@ export class FacilityModifyComponent {
   }
 
   savePublicity() {
-    if (true) {
+    if (this.Validation()) {
       this.service
         .putFacility({
-          PK_Facilidad : parseInt(this.objectPage.id),
+          PK_Facilidad: parseInt(this.objectPage.id),
           Nombre: this.objectPage.name,
           Descripcion: this.objectPage.description,
           Imagen: this.objectPage.img,

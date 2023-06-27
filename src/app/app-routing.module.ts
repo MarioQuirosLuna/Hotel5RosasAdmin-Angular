@@ -71,7 +71,7 @@ const routes: Routes = [
 
   { path: 'modify-about-us', component: ModifyAboutUsPageComponent },
   { path: 'modify-facilities', component: ModifyFacilitiesPageComponent },
-  { path: 'modify-facility', component: ModifyFacilityPageComponent },
+  // { path: 'modify-facility', component: ModifyFacilityPageComponent },
   { path: 'modify-home', component: ModifyHomePageComponent },
   { path: 'modify-ubication', component: ModifyUbicationPageComponent },
   { path: 'consult-rooms', component: ConsultRoomsComponent },

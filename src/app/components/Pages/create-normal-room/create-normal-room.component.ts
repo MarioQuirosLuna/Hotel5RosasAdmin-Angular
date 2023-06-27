@@ -47,82 +47,50 @@ export class CreateNormalRoomComponent {
     });
   }
 
-  Validation() {
-    if (
-      !this.seasonForm.value.nameSeason ||
-      !this.seasonForm.value.typeHabitacion ||
-      !this.seasonForm.value.promotion
-    ) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Error',
-        text: 'Por favor, no deje campos vacíos',
-      });
-
-      return false;
-    }
-
-    if (
-      this.seasonForm.value.promotion > 100 ||
-      this.seasonForm.value.promotion < 0
-    ) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Error',
-        text: 'La promocion debe ser entre 0 y 100 porciento',
-      });
-
-      return false;
-    }
-
-    return true;
-  }
-
   addSeason() {
     if (this.seasonForm.value.estado == 'true') {
       this.estado = true;
     } else {
       this.estado = false;
     }
-    //Call Service to Add Season
-    if (/*this.Validation()*/ true) {
-      this.serviceRoom
-        .insertRoom({
-          fK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
-          estado: this.estado,
-        })
-        .subscribe(
-          () => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'El registro se creó correctamente!',
-              showConfirmButton: false,
-              timer: 1800,
+
+    this.serviceRoom
+      .insertRoom({
+        fK_Tipo_Habitacion: this.seasonForm.value.typeHabitacion,
+        estado: this.estado,
+      })
+      .subscribe(
+        () => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'El registro se creó correctamente!',
+            showConfirmButton: false,
+            timer: 1800,
+          });
+          const navigationExtras = {
+            queryParams: { username: this.username },
+          };
+          this.router
+            .navigate(['/manage-normal-rooms'], navigationExtras)
+            .then(() => {
+              window.history.replaceState(
+                {},
+                document.title,
+                this.router.url.split('?')[0]
+              );
             });
-            const navigationExtras = {
-              queryParams: { username: this.username },
-            };
-            this.router
-              .navigate(['/manage-normal-rooms'], navigationExtras)
-              .then(() => {
-                window.history.replaceState(
-                  {},
-                  document.title,
-                  this.router.url.split('?')[0]
-                );
-              });
-          },
-          (error) => {
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: 'Error al crear',
-              text: 'Por favor, intenta nuevamente más tarde.',
-              showConfirmButton: true,
-            });
-          }
-        );
-    }
+        },
+        (error) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Error al crear',
+            text: 'Por favor, intenta nuevamente más tarde.',
+            showConfirmButton: true,
+          });
+        }
+      );
+
   }
 }
