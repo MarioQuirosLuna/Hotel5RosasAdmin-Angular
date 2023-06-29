@@ -48,7 +48,7 @@ export class TodayHotelComponent {
         doc.setTextColor(40);
         doc.text('Estado de habitaciones del dia de hoy del Hotel 5 Rosas', data.settings.margin.left, 20);
       },
-      head: [['Room Number', 'Room Type', 'Room Status']],
+      head: [['Número Habitación', 'Tipo Habitación', 'Estado Habitación']],
       body: this.rooms.map((row: { numero_Habitacion: any; nombre: any; estado_Del_Dia: any; }) => [row.numero_Habitacion, row.nombre, row.estado_Del_Dia]),
     });
     doc.save('HotelToday.pdf');
