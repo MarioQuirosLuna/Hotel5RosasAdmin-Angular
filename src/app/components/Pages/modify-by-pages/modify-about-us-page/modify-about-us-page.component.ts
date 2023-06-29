@@ -12,14 +12,18 @@ import { AuthService } from 'src/app/components/Util/authService';
 })
 export class ModifyAboutUsPageComponent {
   username: String = '';
+  gallery: any = []
 
-  OnInit() {
+  ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.username = params['username'];
     });
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['']);
-    }
+    // if (!this.authService.isLoggedIn()) {
+    //   this.router.navigate(['']);
+    // }
+    this.service.getGalleryAboutUsInfo().subscribe(gallery => {
+      this.gallery = gallery;
+    })
   }
 
   objectPage: any = {
@@ -97,6 +101,22 @@ export class ModifyAboutUsPageComponent {
         document.title,
         this.router.url.split('?')[0]
       );
+    });
+  }
+  showImage(id: Number) {
+    this.gallery.forEach((element: any) => {
+      if (element.pK_Imagen === id) {
+        element.show = !element.show;
+      }
+    });
+    this.service.putShowImage(id).subscribe(() => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Visibilidad de la imagen modificada correctamente!',
+        showConfirmButton: false,
+        timer: 1800,
+      });
     });
   }
 }

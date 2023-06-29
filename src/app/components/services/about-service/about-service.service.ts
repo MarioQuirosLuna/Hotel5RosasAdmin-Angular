@@ -21,7 +21,11 @@ export class AboutServiceService {
   }
 
   apiURLModifyAboutUs = '/Entity_Pagina/UpdateAboutUs/';
-  putAboutUs(object : any): Observable<any> {
+  putAboutUs(object: any): Observable<any> {
     return this.http.put(environment.url + this.apiURLModifyAboutUs, object);
+  }
+  apiGalleryShowImageURL = '/Entity_Galeria/putShowImage/';
+  putShowImage(id: Number): Observable<any> {
+    return this.http.put(environment.url + this.apiGalleryShowImageURL + id, null);
   }
 }

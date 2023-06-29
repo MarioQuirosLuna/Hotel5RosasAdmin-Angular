@@ -15,6 +15,7 @@ export class ManageRoomsComponent {
   roomsTypes: any = [];
   rooms: any = [];
   imagen: String = ""
+  rates: any = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private serviceRoom: RoomsTypeServiceService, private service: RoomServiceService, private authService: AuthService) { }
 
@@ -31,6 +32,16 @@ export class ManageRoomsComponent {
     this.serviceRoom.getRooms().subscribe(rooms => {
       this.rooms = rooms;
     })
+    this.serviceRoom.getRates().subscribe((rates) => {
+      this.rates = rates;
+      this.roomsTypes.forEach((element: any) => {
+        this.rates.forEach((element2: any) => {
+          if (element2.nombre == element.nombre) {
+            element.caracteristicas = element2.caracteristicas;
+          }
+        });
+      });
+    });
   }
 
   goEdit(_id: Number): void {

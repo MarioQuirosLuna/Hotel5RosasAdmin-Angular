@@ -17,6 +17,7 @@ export class RoomsTypeServiceService {
   apiRoomGetAvailabilityURL = '/Entity_Habitacion/GetAvaibilityRoom';
   apiRoomInsertTypeRoomURL = '/Entity_TipoHabitacion/InsertTypeRoom'
   apiRoomDeleteTypeRoomURL = '/Entity_TipoHabitacion/DeleteTipoHabitacion'
+  apiURL = '/Entity_Pagina/getTarifas';
   getRoomsType(): Observable<any> {
     return this.http.get(environment.url + this.apiRoomsTypesURL);
   }
@@ -37,5 +38,8 @@ export class RoomsTypeServiceService {
   }
   apiRoomDeleteTypeRoom(id: Number): Observable<any> {
     return this.http.delete(environment.url + this.apiRoomDeleteTypeRoomURL + '/' + id);
+  }
+  getRates(): Observable<any> {
+    return this.http.get(environment.url+this.apiURL);
   }
 }

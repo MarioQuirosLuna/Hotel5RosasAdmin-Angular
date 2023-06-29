@@ -19,6 +19,9 @@
                 <h4>Tarifa:
                   <span class="text-primary">₡{{roomType.tarifa}}</span>
                 </h4>
+                <h4>Caracteristicas:
+                  <span class="text-primary">{{roomType.caracteristicas}}</span>
+                </h4>
               </span>
             </div>
             <div>
@@ -52,7 +55,8 @@
                   {{ room.estado_Del_Dia ? room.estado_Del_Dia : room.estado_Del_Dia }}
                 </td>
                 <td class="text-center" *ngIf="room.fK_Tipo_Habitacion===roomType.pK_Tipo_Habitacion">
-                  <button type="button" class="btn btn-danger" (click)="goDeleteRoom(room.pK_Habitacion)">Eliminar</button>
+                  <button type="button" class="btn btn-danger"
+                    (click)="goDeleteRoom(room.pK_Habitacion)">Eliminar</button>
                 </td>
 
               </tr>
