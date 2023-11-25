@@ -35,6 +35,10 @@ import { CreateNormalRoomComponent } from './components/Pages/create-normal-room
 import { FacilityCreateComponent } from './components/Pages/facility-create/facility-create.component';
 import { FacilityModifyComponent } from './components/Pages/facility-modify/facility-modify.component';
 import { CreateTypeRoomComponent } from './components/Pages/create-type-room/create-type-room.component';
+import { CalidadComponent } from './components/no-funtional/calidad/calidad.component';
+import { ActivosFijosComponent } from './components/no-funtional/activos-fijos/activos-fijos.component';
+import { FinanzasComponent } from './components/no-funtional/finanzas/finanzas.component';
+import { RRHHComponent } from './components/no-funtional/rrhh/rrhh.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -75,7 +79,10 @@ const routes: Routes = [
   { path: 'modify-home', component: ModifyHomePageComponent },
   { path: 'modify-ubication', component: ModifyUbicationPageComponent },
   { path: 'consult-rooms', component: ConsultRoomsComponent },
-
+  { path: 'calidad', component: CalidadComponent },
+  { path: 'activos', component: ActivosFijosComponent },
+  { path: 'finanzas', component: FinanzasComponent },
+  { path: 'rrhh', component: RRHHComponent },
   { path: '**', redirectTo: "login" },
 ];
 

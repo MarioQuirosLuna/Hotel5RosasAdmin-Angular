@@ -157,4 +157,55 @@ export class LateralMenuComponent {
       );
     });
   }
+
+  routerCalidad() {
+    const navigationExtras = {
+      queryParams: { username: this.username },
+    };
+    this.router.navigate(['/calidad'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }routerActivos() {
+    const navigationExtras = {
+      queryParams: { username: this.username },
+    };
+    this.router.navigate(['/activos'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+  routerFinanzas() {
+    const navigationExtras = {
+      queryParams: { username: this.username },
+    };
+    this.router.navigate(['/finanzas'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+  routerRRHH() {
+    const navigationExtras = {
+      queryParams: { username: this.username },
+    };
+    this.router.navigate(['/rrhh'], navigationExtras).then(() => {
+      window.history.replaceState(
+        {},
+        document.title,
+        this.router.url.split('?')[0]
+      );
+    });
+  }
+
+
+
 }

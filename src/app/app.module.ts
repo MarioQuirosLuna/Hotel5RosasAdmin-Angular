@@ -44,7 +44,12 @@ import { CreateNormalRoomComponent } from './components/Pages/create-normal-room
 import { MapComponent } from './components/Util/map/map.component';
 import { FacilityCreateComponent } from './components/Pages/facility-create/facility-create.component';
 import { FacilityModifyComponent } from './components/Pages/facility-modify/facility-modify.component';
-import { CreateTypeRoomComponent } from './components/Pages/create-type-room/create-type-room.component';
+import { CreateTypeRoomComponent } from './components/Pages/create-type-room/create-type-room.component'; 
+import { ActivosFijosComponent } from './components/no-funtional/activos-fijos/activos-fijos.component';
+import { CalidadComponent } from './components/no-funtional/calidad/calidad.component';
+import { FinanzasComponent } from './components/no-funtional/finanzas/finanzas.component';
+import { RRHHComponent } from './components/no-funtional/rrhh/rrhh.component';
+
 
 @NgModule({
   declarations: [
@@ -85,7 +90,11 @@ import { CreateTypeRoomComponent } from './components/Pages/create-type-room/cre
     MapComponent,
     FacilityCreateComponent,
     FacilityModifyComponent,
-    CreateTypeRoomComponent
+    CreateTypeRoomComponent,
+    ActivosFijosComponent,
+    CalidadComponent,
+    FinanzasComponent,
+    RRHHComponent
   ],
   imports: [
     BrowserModule,
